@@ -121,7 +121,7 @@ func (p *GitHubProvider) EnrichSession(ctx context.Context, s *sessions.SessionS
 	if err := p.getEmail(ctx, s); err != nil {
 		return err
 	}
-
+  
 	return p.getUser(ctx, s)
 }
 
@@ -513,6 +513,7 @@ func (p *GitHubProvider) getTeams(ctx context.Context, s *sessions.SessionState)
 			logger.Printf("Member of Github Organization/Team:%q/%q", team.Org.Login, team.Slug)
 			s.Groups = append(s.Groups, team.Org.Login+orgTeamSeparator+team.Slug)
 		}
+    
 		pn++
 	}
 
