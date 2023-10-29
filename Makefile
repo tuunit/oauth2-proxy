@@ -49,7 +49,7 @@ DOCKER_BUILDX_PUSH_X_PLATFORM := $(DOCKER_BUILDX_PUSH) --platform ${DOCKER_BUILD
 
 .PHONY: docker
 docker:
-	$(DOCKER_BUILDX_X_PLATFORM) -t $(REGISTRY)/oauth2-proxy:latest -t $(REGISTRY)/oauth2-proxy:${VERSION} .
+	$(DOCKER_BUILDX_X_PLATFORM) -t ghcr.io/tuunit/oauth2-proxy:v7.5.1-introspection .
 
 .PHONY: docker-all
 docker-all: docker
@@ -61,7 +61,7 @@ docker-all: docker
 
 .PHONY: docker-push
 docker-push:
-	$(DOCKER_BUILDX_PUSH_X_PLATFORM) -t $(REGISTRY)/oauth2-proxy:latest -t $(REGISTRY)/oauth2-proxy:${VERSION} .
+	$(DOCKER_BUILDX_PUSH_X_PLATFORM) -t ghcr.io/tuunit/oauth2-proxy:v7.5.1-introspection .
 
 .PHONY: docker-push-all
 docker-push-all: docker-push

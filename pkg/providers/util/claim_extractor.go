@@ -47,6 +47,15 @@ func NewClaimExtractor(ctx context.Context, idToken string, profileURL *url.URL,
 	}, nil
 }
 
+func NewAccessTokenClaimExtractor(ctx context.Context, payload *simplejson.Json, profileURL *url.URL, profileRequestHeaders http.Header) (ClaimExtractor, error) {
+	return &claimExtractor{
+		ctx:            ctx,
+		profileURL:     profileURL,
+		requestHeaders: profileRequestHeaders,
+		tokenClaims:    payload,
+	}, nil
+}
+
 // claimExtractor implements the ClaimExtractor interface
 type claimExtractor struct {
 	profileURL     *url.URL
