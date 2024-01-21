@@ -20,8 +20,8 @@ To restrict by organization only, include the following flag:
 
 To restrict within an organization to specific teams, include the following flag in addition to `-github-org`:
 
-```
-    --github-team="": restrict logins to members of any of these teams (slug), separated by a comma
+```shell
+    --github-team=""  # restrict logins to members of any of these teams (slug), separated by a comma
 ```
 
 If you would rather restrict access to collaborators of a repository, those users must either have push access to a 
