@@ -35,8 +35,8 @@ If you'd like to allow access to users with **read only** access to a **public**
 [token](https://github.com/settings/tokens) for a user that has write access to the repository. The token must be 
 created with at least the `public_repo` scope:
 
-```
-    --github-token="": the token to use when verifying repository collaborators
+```shell
+    --github-token=""  # the token to use when verifying repository collaborators
 ```
 
 To allow a user to log in with their username even if they do not belong to the specified org and team or collaborators, 
