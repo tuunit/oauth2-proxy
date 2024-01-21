@@ -14,8 +14,8 @@ org and team or collaborators.
 
 To restrict by organization only, include the following flag:
 
-```
-    --github-org="": restrict logins to members of this organisation
+```shell
+    --github-org=""  # restrict logins to members of this organisation
 ```
 
 To restrict within an organization to specific teams, include the following flag in addition to `-github-org`:
