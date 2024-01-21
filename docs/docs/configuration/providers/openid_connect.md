@@ -53,7 +53,7 @@ To configure the OIDC provider for Dex, perform the following steps:
 
    To serve the current working directory as a website under the `/static` endpoint, add:
 
-    ```
+    ```shell
     --upstream file://$PWD/#/static/
     ```
 
