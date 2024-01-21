@@ -32,7 +32,7 @@ Restricting by group membership is possible with the following option:
 
 If you are using self-hosted GitLab, make sure you set the following to the appropriate URL:
 
-```
+```shell
     --oidc-issuer-url="<your gitlab url>"
 ```
 
