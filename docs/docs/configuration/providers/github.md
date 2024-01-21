@@ -27,8 +27,8 @@ To restrict within an organization to specific teams, include the following flag
 If you would rather restrict access to collaborators of a repository, those users must either have push access to a 
 public repository or any access to a private repository:
 
-```
-    --github-repo="": restrict logins to collaborators of this repository formatted as orgname/repo
+```shell
+    --github-repo=""  # restrict logins to collaborators of this repository formatted as orgname/repo
 ```
 
 If you'd like to allow access to users with **read only** access to a **public** repository you will need to provide a 
