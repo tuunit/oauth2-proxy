@@ -39,7 +39,7 @@ To configure the OIDC provider for Dex, perform the following steps:
 
 4. In a second terminal, run the oauth2-proxy with the following args:
 
-    ```
+    ```shell
     --provider oidc
     --provider-display-name "My OIDC Provider"
     --client-id oauth2-proxy
