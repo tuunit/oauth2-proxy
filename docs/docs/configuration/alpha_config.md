@@ -173,6 +173,7 @@ They may change between releases without notice.
 | `cookie` | _[Cookie](#cookie)_ | Cookie is used to configure the cookie used to store the session state.<br/>This includes options such as the cookie name, its expiry and its domain. |
 | `session` | _[SessionOptions](#sessionoptions)_ | Session is used to configure the session storage.<br/>To either use a cookie or a redis store. |
 | `pageTemplates` | _[PageTemplates](#pagetemplates)_ | PageTemplates is used to configure custom page templates.<br/>This includes the sign in and error pages. |
+| `logging` | _[Logging](#logging)_ | Logging is used to configure the logging output.<br/>Which formats are enabled and where to write the logs. |
 
 ### AzureOptions
 
@@ -316,6 +317,41 @@ make up the header value
 | ----- | ---- | ----------- |
 | `groups` | _[]string_ | Group enables to restrict login to members of indicated group |
 | `roles` | _[]string_ | Role enables to restrict login to users with role (only available when using the keycloak-oidc provider) |
+
+### LogFileOptions
+
+(**Appears on:** [Logging](#logging))
+
+LogFileOptions contains options for configuring logging to a file
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| `filename` | _string_ |  |
+| `maxSize` | _int_ |  |
+| `maxAge` | _int_ |  |
+| `maxBackups` | _int_ |  |
+| `compress` | _bool_ |  |
+
+### Logging
+
+(**Appears on:** [AlphaOptions](#alphaoptions))
+
+Logging contains all options required for configuring the logging
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| `authEnabled` | _bool_ |  |
+| `authFormat` | _string_ |  |
+| `requestEnabled` | _bool_ |  |
+| `requestFormat` | _string_ |  |
+| `standardEnabled` | _bool_ |  |
+| `standardFormat` | _string_ |  |
+| `errToInfo` | _bool_ |  |
+| `excludePaths` | _[]string_ |  |
+| `localTime` | _bool_ |  |
+| `silencePing` | _bool_ |  |
+| `requestIdHeader` | _string_ |  |
+| `fileOptions` | _[LogFileOptions](#logfileoptions)_ |  |
 
 ### LoginGovOptions
 
