@@ -1,0 +1,3019 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="OAuth2 Proxy Authors">
+      
+      
+      
+        <link rel="prev" href="../overview/">
+      
+      
+        <link rel="next" href="../overview/">
+      
+      
+      <link rel="icon" href="/assets/logos/OAuth2_Proxy_icon.svg">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.29">
+    
+    
+      
+        <title>Alpha Configuration - OAuth2 Proxy Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.76a95c52.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#using-alpha-configuration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="OAuth2 Proxy Documentation" class="md-header__button md-logo" aria-label="OAuth2 Proxy Documentation" data-md-component="logo">
+      
+  <img src="/assets/logos/OAuth2_Proxy_filled_icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OAuth2 Proxy Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Alpha Configuration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/oauth2-proxy/oauth2-proxy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    oauth2-proxy/oauth2-proxy
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="OAuth2 Proxy Documentation" class="md-nav__button md-logo" aria-label="OAuth2 Proxy Documentation" data-md-component="logo">
+      
+  <img src="/assets/logos/OAuth2_Proxy_filled_icon.svg" alt="logo">
+
+    </a>
+    OAuth2 Proxy Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/oauth2-proxy/oauth2-proxy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    oauth2-proxy/oauth2-proxy
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../behaviour/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Behaviour
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Configuration
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Configuration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Alpha Configuration
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Alpha Configuration
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#using-alpha-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Alpha Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Alpha Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#converting-configuration-to-the-new-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Converting configuration to the new structure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-env-variables-in-the-alpha-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using ENV variables in the alpha configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#removed-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removed options
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adfsoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      ADFSOptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alphaoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      AlphaOptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azureoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      AzureOptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bitbucketoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      BitbucketOptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claimsource" class="md-nav__link">
+    <span class="md-ellipsis">
+      ClaimSource
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Duration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Duration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#string-alias" class="md-nav__link">
+    <span class="md-ellipsis">
+      (string alias)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#githuboptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHubOptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gitlaboptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitLabOptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#googleoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      GoogleOptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#header" class="md-nav__link">
+    <span class="md-ellipsis">
+      Header
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#headervalue" class="md-nav__link">
+    <span class="md-ellipsis">
+      HeaderValue
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keycloakoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      KeycloakOptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logingovoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      LoginGovOptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loginurlparameter" class="md-nav__link">
+    <span class="md-ellipsis">
+      LoginURLParameter
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-parameter-whose-value-is-fixed" class="md-nav__link">
+    <span class="md-ellipsis">
+      A parameter whose value is fixed
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A parameter whose value is fixed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oidcoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      OIDCOptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Provider
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providertype" class="md-nav__link">
+    <span class="md-ellipsis">
+      ProviderType
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ProviderType">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#string-alias_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      (string alias)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Providers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Providers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#provider-alias" class="md-nav__link">
+    <span class="md-ellipsis">
+      ([]Provider alias)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secretsource" class="md-nav__link">
+    <span class="md-ellipsis">
+      SecretSource
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      TLS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#urlparameterrule" class="md-nav__link">
+    <span class="md-ellipsis">
+      URLParameterRule
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upstream" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upstream
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upstreamconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      UpstreamConfig
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    OAuth Provider
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            OAuth Provider
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/adfs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ADFS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/azure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Azure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/azure_ad/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Azure AD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/bitbucket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bitbucket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/digitalocean/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DigitalOcean
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/facebook/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Facebook
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/gitea/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gitea
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/gitlab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitLab
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/google/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Google
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/keycloak/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Keycloak
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/keycloak_oidc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Keycloak OIDC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/linkedin/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LinkedIn
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/login_gov/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Login.gov
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/nextcloud/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nextcloud
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/openid_connect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenID Connect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sessions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Session Storage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TLS Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Features
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Features
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/endpoints/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Endpoints
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Community
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Community
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../community/contribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contribution Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../community/security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Security
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#using-alpha-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Alpha Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Alpha Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#converting-configuration-to-the-new-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Converting configuration to the new structure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-env-variables-in-the-alpha-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using ENV variables in the alpha configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#removed-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removed options
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adfsoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      ADFSOptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alphaoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      AlphaOptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azureoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      AzureOptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bitbucketoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      BitbucketOptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claimsource" class="md-nav__link">
+    <span class="md-ellipsis">
+      ClaimSource
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Duration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Duration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#string-alias" class="md-nav__link">
+    <span class="md-ellipsis">
+      (string alias)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#githuboptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHubOptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gitlaboptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitLabOptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#googleoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      GoogleOptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#header" class="md-nav__link">
+    <span class="md-ellipsis">
+      Header
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#headervalue" class="md-nav__link">
+    <span class="md-ellipsis">
+      HeaderValue
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keycloakoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      KeycloakOptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logingovoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      LoginGovOptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loginurlparameter" class="md-nav__link">
+    <span class="md-ellipsis">
+      LoginURLParameter
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-parameter-whose-value-is-fixed" class="md-nav__link">
+    <span class="md-ellipsis">
+      A parameter whose value is fixed
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A parameter whose value is fixed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oidcoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      OIDCOptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Provider
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providertype" class="md-nav__link">
+    <span class="md-ellipsis">
+      ProviderType
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ProviderType">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#string-alias_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      (string alias)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Providers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Providers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#provider-alias" class="md-nav__link">
+    <span class="md-ellipsis">
+      ([]Provider alias)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secretsource" class="md-nav__link">
+    <span class="md-ellipsis">
+      SecretSource
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      TLS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#urlparameterrule" class="md-nav__link">
+    <span class="md-ellipsis">
+      URLParameterRule
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upstream" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upstream
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upstreamconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      UpstreamConfig
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This page contains documentation for alpha features.
+We reserve the right to make breaking changes to the features detailed within this page with no notice.</p>
+<p>Options described in this page may be changed, removed, renamed or moved without prior warning.
+Please beware of this before you use alpha configuration options.</p>
+</div>
+<p>This page details a set of <strong>alpha</strong> configuration options in a new format.
+Going forward we are intending to add structured configuration in YAML format to
+replace the existing TOML based configuration file and flags.</p>
+<p>Below is a reference for the structure of the configuration, with
+<a href="#alphaoptions">AlphaOptions</a> as the root of the configuration.</p>
+<p>When using alpha configuration, your config file will look something like below:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">upstreams</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">...</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nt">injectRequestHeaders</span><span class="p">:</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nt">...</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nt">injectResponseHeaders</span><span class="p">:</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nt">...</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</span></code></pre></div>
+<p>Please browse the <a href="#configuration-reference">reference</a> below for the structure
+of the new configuration format.</p>
+<h2 id="using-alpha-configuration">Using Alpha Configuration</h2>
+<p>To use the new <strong>alpha</strong> configuration, generate a YAML file based on the format
+described in the <a href="#configuration-reference">reference</a> below.</p>
+<p>Provide the path to this file using the <code>--alpha-config</code> flag.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using the <code>--alpha-config</code> flag, some options are no longer available.
+See <a href="#removed-options">removed options</a> below for more information.</p>
+</div>
+<h3 id="converting-configuration-to-the-new-structure">Converting configuration to the new structure</h3>
+<p>Before adding the new <code>--alpha-config</code> option, start OAuth2 Proxy using the
+<code>convert-config-to-alpha</code> flag to convert existing configuration to the new format.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>oauth2-proxy<span class="w"> </span>--convert-config-to-alpha<span class="w"> </span>--config<span class="w"> </span>./path/to/existing/config.cfg
+</span></code></pre></div>
+<p>This will convert any options supported by the new format to YAML and print the
+new configuration to <code>STDOUT</code>.</p>
+<p>Copy this to a new file, remove any options from your existing configuration
+noted in <a href="#removed-options">removed options</a> and then start OAuth2 Proxy using
+the new config.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>oauth2-proxy<span class="w"> </span>--alpha-config<span class="w"> </span>./path/to/new/config.yaml<span class="w"> </span>--config<span class="w"> </span>./path/to/existing/config.cfg
+</span></code></pre></div>
+<h2 id="using-env-variables-in-the-alpha-configuration">Using ENV variables in the alpha configuration</h2>
+<p>The alpha package supports the use of environment variables in place of yaml keys, allowing sensitive values to be pulled from somewhere other than the yaml file.
+When using environment variables, your yaml will look like this:</p>
+<p><div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">    </span><span class="nt">providers</span><span class="p">:</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">      </span><span class="nt">clientSecret</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${CLIENT_SECRET}</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</span></code></pre></div>
+Where CLIENT_SECRET is an environment variable.
+More information and available patterns can be found <a href="https://github.com/a8m/envsubst#docs">here</a></p>
+<h2 id="removed-options">Removed options</h2>
+<p>The following flags/options and their respective environment variables are no
+longer available when using alpha configuration:</p>
+<!-- Legacy Upstream FlagSet -->
+<ul>
+<li><code>flush-interval</code>/<code>flush_interval</code></li>
+<li><code>pass-host-header</code>/<code>pass_host_header</code></li>
+<li><code>proxy-websockets</code>/<code>proxy_websockets</code></li>
+<li><code>ssl-upstream-insecure-skip-verify</code>/<code>ssl_upstream_insecure_skip_verify</code></li>
+<li><code>upstream</code>/<code>upstreams</code></li>
+</ul>
+<!-- Legacy Headers FlagSet -->
+<ul>
+<li><code>pass-basic-auth</code>/<code>pass_basic_auth</code></li>
+<li><code>pass-access-token</code>/<code>pass_access_token</code></li>
+<li><code>pass-user-headers</code>/<code>pass_user_headers</code></li>
+<li><code>pass-authorization-header</code>/<code>pass_authorization_header</code></li>
+<li><code>set-basic-auth</code>/<code>set_basic_auth</code></li>
+<li><code>set-xauthrequest</code>/<code>set_xauthrequest</code></li>
+<li><code>set-authorization-header</code>/<code>set_authorization_header</code></li>
+<li><code>prefer-email-to-user</code>/<code>prefer_email_to_user</code></li>
+<li><code>basic-auth-password</code>/<code>basic_auth_password</code></li>
+<li><code>skip-auth-strip-headers</code>/<code>skip_auth_strip_headers</code></li>
+</ul>
+<!-- Legacy provider FlagSet -->
+<ul>
+<li><code>client-id</code>/<code>client_id</code></li>
+<li><code>client-secret</code>/<code>client_secret</code>, and <code>client-secret-file</code>/<code>client_secret_file</code></li>
+<li><code>provider</code></li>
+<li><code>provider-display-name</code>/<code>provider_display_name</code></li>
+<li><code>provider-ca-file</code>/<code>provider_ca_files</code></li>
+<li><code>login-url</code>/<code>login_url</code></li>
+<li><code>redeem-url</code>/<code>redeem_url</code></li>
+<li><code>profile-url</code>/<code>profile_url</code></li>
+<li><code>resource</code></li>
+<li><code>validate-url</code>/<code>validate_url</code></li>
+<li><code>scope</code></li>
+<li><code>prompt</code></li>
+<li><code>approval-prompt</code>/<code>approval_prompt</code></li>
+<li><code>acr-values</code>/<code>acr_values</code></li>
+<li><code>user-id-claim</code>/<code>user_id_claim</code></li>
+<li><code>allowed-group</code>/<code>allowed_groups</code></li>
+<li><code>allowed-role</code>/<code>allowed_roles</code></li>
+<li><code>jwt-key</code>/<code>jwt_key</code></li>
+<li><code>jwt-key-file</code>/<code>jwt_key_file</code></li>
+<li><code>pubjwk-url</code>/<code>pubjwk_url</code></li>
+</ul>
+<p>and all provider-specific options, i.e. any option whose name includes <code>oidc</code>,
+<code>azure</code>, <code>bitbucket</code>, <code>github</code>, <code>gitlab</code>, <code>google</code> or <code>keycloak</code>.  Attempting to
+use any of these options via flags or via config when <code>--alpha-config</code> is
+set will result in an error.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>You must remove these options before starting OAuth2 Proxy with <code>--alpha-config</code></p>
+</div>
+<h2 id="configuration-reference">Configuration Reference</h2>
+<!--- THIS FILE IS AUTOGENERATED!!! DO NOT EDIT!!! -->
+
+<h3 id="adfsoptions">ADFSOptions</h3>
+<p>(<strong>Appears on:</strong> <a href="#provider">Provider</a>)</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>skipScope</code></td>
+<td><em>bool</em></td>
+<td>Skip adding the scope parameter in login request<br/>Default value is 'false'</td>
+</tr>
+</tbody>
+</table>
+<h3 id="alphaoptions">AlphaOptions</h3>
+<p>AlphaOptions contains alpha structured configuration options.
+Usage of these options allows users to access alpha features that are not
+available as part of the primary configuration structure for OAuth2 Proxy.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The options within this structure are considered alpha.
+They may change between releases without notice.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>upstreamConfig</code></td>
+<td><em><a href="#upstreamconfig">UpstreamConfig</a></em></td>
+<td>UpstreamConfig is used to configure upstream servers.<br/>Once a user is authenticated, requests to the server will be proxied to<br/>these upstream servers based on the path mappings defined in this list.</td>
+</tr>
+<tr>
+<td><code>injectRequestHeaders</code></td>
+<td><em><a href="#header">[]Header</a></em></td>
+<td>InjectRequestHeaders is used to configure headers that should be added<br/>to requests to upstream servers.<br/>Headers may source values from either the authenticated user's session<br/>or from a static secret value.</td>
+</tr>
+<tr>
+<td><code>injectResponseHeaders</code></td>
+<td><em><a href="#header">[]Header</a></em></td>
+<td>InjectResponseHeaders is used to configure headers that should be added<br/>to responses from the proxy.<br/>This is typically used when using the proxy as an external authentication<br/>provider in conjunction with another proxy such as NGINX and its<br/>auth_request module.<br/>Headers may source values from either the authenticated user's session<br/>or from a static secret value.</td>
+</tr>
+<tr>
+<td><code>server</code></td>
+<td><em><a href="#server">Server</a></em></td>
+<td>Server is used to configure the HTTP(S) server for the proxy application.<br/>You may choose to run both HTTP and HTTPS servers simultaneously.<br/>This can be done by setting the BindAddress and the SecureBindAddress simultaneously.<br/>To use the secure server you must configure a TLS certificate and key.</td>
+</tr>
+<tr>
+<td><code>metricsServer</code></td>
+<td><em><a href="#server">Server</a></em></td>
+<td>MetricsServer is used to configure the HTTP(S) server for metrics.<br/>You may choose to run both HTTP and HTTPS servers simultaneously.<br/>This can be done by setting the BindAddress and the SecureBindAddress simultaneously.<br/>To use the secure server you must configure a TLS certificate and key.</td>
+</tr>
+<tr>
+<td><code>providers</code></td>
+<td><em><a href="#providers">Providers</a></em></td>
+<td>Providers is used to configure multiple providers.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="azureoptions">AzureOptions</h3>
+<p>(<strong>Appears on:</strong> <a href="#provider">Provider</a>)</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tenant</code></td>
+<td><em>string</em></td>
+<td>Tenant directs to a tenant-specific or common (tenant-independent) endpoint<br/>Default value is 'common'</td>
+</tr>
+<tr>
+<td><code>graphGroupField</code></td>
+<td><em>string</em></td>
+<td>GraphGroupField configures the group field to be used when building the groups list from Microsoft Graph<br/>Default value is 'id'</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bitbucketoptions">BitbucketOptions</h3>
+<p>(<strong>Appears on:</strong> <a href="#provider">Provider</a>)</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>team</code></td>
+<td><em>string</em></td>
+<td>Team sets restrict logins to members of this team</td>
+</tr>
+<tr>
+<td><code>repository</code></td>
+<td><em>string</em></td>
+<td>Repository sets restrict logins to user with access to this repository</td>
+</tr>
+</tbody>
+</table>
+<h3 id="claimsource">ClaimSource</h3>
+<p>(<strong>Appears on:</strong> <a href="#headervalue">HeaderValue</a>)</p>
+<p>ClaimSource allows loading a header value from a claim within the session</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>claim</code></td>
+<td><em>string</em></td>
+<td>Claim is the name of the claim in the session that the value should be<br/>loaded from. Available claims: <code>access_token</code> <code>id_token</code> <code>created_at</code><br/><code>expires_on</code> <code>refresh_token</code> <code>email</code> <code>user</code> <code>groups</code> <code>preferred_username</code>.</td>
+</tr>
+<tr>
+<td><code>prefix</code></td>
+<td><em>string</em></td>
+<td>Prefix is an optional prefix that will be prepended to the value of the<br/>claim if it is non-empty.</td>
+</tr>
+<tr>
+<td><code>basicAuthPassword</code></td>
+<td><em><a href="#secretsource">SecretSource</a></em></td>
+<td>BasicAuthPassword converts this claim into a basic auth header.<br/>Note the value of claim will become the basic auth username and the<br/>basicAuthPassword will be used as the password value.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="duration">Duration</h3>
+<h4 id="string-alias">(<code>string</code> alias)</h4>
+<p>(<strong>Appears on:</strong> <a href="#upstream">Upstream</a>)</p>
+<p>Duration is as string representation of a period of time.
+A duration string is a is a possibly signed sequence of decimal numbers,
+each with optional fraction and a unit suffix, such as "300ms", "-1.5h" or "2h45m".
+Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".</p>
+<h3 id="githuboptions">GitHubOptions</h3>
+<p>(<strong>Appears on:</strong> <a href="#provider">Provider</a>)</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>org</code></td>
+<td><em>string</em></td>
+<td>Org sets restrict logins to members of this organisation</td>
+</tr>
+<tr>
+<td><code>team</code></td>
+<td><em>string</em></td>
+<td>Team sets restrict logins to members of this team</td>
+</tr>
+<tr>
+<td><code>repo</code></td>
+<td><em>string</em></td>
+<td>Repo sets restrict logins to collaborators of this repository</td>
+</tr>
+<tr>
+<td><code>token</code></td>
+<td><em>string</em></td>
+<td>Token is the token to use when verifying repository collaborators<br/>it must have push access to the repository</td>
+</tr>
+<tr>
+<td><code>users</code></td>
+<td><em>[]string</em></td>
+<td>Users allows users with these usernames to login<br/>even if they do not belong to the specified org and team or collaborators</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gitlaboptions">GitLabOptions</h3>
+<p>(<strong>Appears on:</strong> <a href="#provider">Provider</a>)</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>group</code></td>
+<td><em>[]string</em></td>
+<td>Group sets restrict logins to members of this group</td>
+</tr>
+<tr>
+<td><code>projects</code></td>
+<td><em>[]string</em></td>
+<td>Projects restricts logins to members of these projects</td>
+</tr>
+</tbody>
+</table>
+<h3 id="googleoptions">GoogleOptions</h3>
+<p>(<strong>Appears on:</strong> <a href="#provider">Provider</a>)</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>group</code></td>
+<td><em>[]string</em></td>
+<td>Groups sets restrict logins to members of this Google group</td>
+</tr>
+<tr>
+<td><code>adminEmail</code></td>
+<td><em>string</em></td>
+<td>AdminEmail is the Google admin to impersonate for api calls</td>
+</tr>
+<tr>
+<td><code>serviceAccountJson</code></td>
+<td><em>string</em></td>
+<td>ServiceAccountJSON is the path to the service account json credentials</td>
+</tr>
+<tr>
+<td><code>useApplicationDefaultCredentials</code></td>
+<td><em>bool</em></td>
+<td>UseApplicationDefaultCredentials is a boolean whether to use Application Default Credentials instead of a ServiceAccountJSON</td>
+</tr>
+<tr>
+<td><code>targetPrincipal</code></td>
+<td><em>string</em></td>
+<td>TargetPrincipal is the Google Service Account used for Application Default Credentials</td>
+</tr>
+</tbody>
+</table>
+<h3 id="header">Header</h3>
+<p>(<strong>Appears on:</strong> <a href="#alphaoptions">AlphaOptions</a>)</p>
+<p>Header represents an individual header that will be added to a request or
+response header.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><em>string</em></td>
+<td>Name is the header name to be used for this set of values.<br/>Names should be unique within a list of Headers.</td>
+</tr>
+<tr>
+<td><code>preserveRequestValue</code></td>
+<td><em>bool</em></td>
+<td>PreserveRequestValue determines whether any values for this header<br/>should be preserved for the request to the upstream server.<br/>This option only applies to injected request headers.<br/>Defaults to false (headers that match this header will be stripped).</td>
+</tr>
+<tr>
+<td><code>values</code></td>
+<td><em><a href="#headervalue">[]HeaderValue</a></em></td>
+<td>Values contains the desired values for this header</td>
+</tr>
+</tbody>
+</table>
+<h3 id="headervalue">HeaderValue</h3>
+<p>(<strong>Appears on:</strong> <a href="#header">Header</a>)</p>
+<p>HeaderValue represents a single header value and the sources that can
+make up the header value</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td><em>[]byte</em></td>
+<td>Value expects a base64 encoded string value.</td>
+</tr>
+<tr>
+<td><code>fromEnv</code></td>
+<td><em>string</em></td>
+<td>FromEnv expects the name of an environment variable.</td>
+</tr>
+<tr>
+<td><code>fromFile</code></td>
+<td><em>string</em></td>
+<td>FromFile expects a path to a file containing the secret value.</td>
+</tr>
+<tr>
+<td><code>claim</code></td>
+<td><em>string</em></td>
+<td>Claim is the name of the claim in the session that the value should be<br/>loaded from. Available claims: <code>access_token</code> <code>id_token</code> <code>created_at</code><br/><code>expires_on</code> <code>refresh_token</code> <code>email</code> <code>user</code> <code>groups</code> <code>preferred_username</code>.</td>
+</tr>
+<tr>
+<td><code>prefix</code></td>
+<td><em>string</em></td>
+<td>Prefix is an optional prefix that will be prepended to the value of the<br/>claim if it is non-empty.</td>
+</tr>
+<tr>
+<td><code>basicAuthPassword</code></td>
+<td><em><a href="#secretsource">SecretSource</a></em></td>
+<td>BasicAuthPassword converts this claim into a basic auth header.<br/>Note the value of claim will become the basic auth username and the<br/>basicAuthPassword will be used as the password value.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="keycloakoptions">KeycloakOptions</h3>
+<p>(<strong>Appears on:</strong> <a href="#provider">Provider</a>)</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>groups</code></td>
+<td><em>[]string</em></td>
+<td>Group enables to restrict login to members of indicated group</td>
+</tr>
+<tr>
+<td><code>roles</code></td>
+<td><em>[]string</em></td>
+<td>Role enables to restrict login to users with role (only available when using the keycloak-oidc provider)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="logingovoptions">LoginGovOptions</h3>
+<p>(<strong>Appears on:</strong> <a href="#provider">Provider</a>)</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>jwtKey</code></td>
+<td><em>string</em></td>
+<td>JWTKey is a private key in PEM format used to sign JWT,</td>
+</tr>
+<tr>
+<td><code>jwtKeyFile</code></td>
+<td><em>string</em></td>
+<td>JWTKeyFile is a path to the private key file in PEM format used to sign the JWT</td>
+</tr>
+<tr>
+<td><code>pubjwkURL</code></td>
+<td><em>string</em></td>
+<td>PubJWKURL is the JWK pubkey access endpoint</td>
+</tr>
+</tbody>
+</table>
+<h3 id="loginurlparameter">LoginURLParameter</h3>
+<p>(<strong>Appears on:</strong> <a href="#provider">Provider</a>)</p>
+<p>LoginURLParameter is the configuration for a single query parameter that
+can be passed through from the <code>/oauth2/start</code> endpoint to the IdP login
+URL.  The "default" option specifies the default value or values (if any)
+that will be passed to the IdP for this parameter, and "allow" is a list
+of options for ways in which this parameter can be set or overridden via
+the query string to <code>/oauth2/start</code>.
+If <em>only</em> a default is specified and no "allow" then the parameter is
+effectively fixed - the default value will always be used and anything
+passed to the start URL will be ignored.  If <em>only</em> "allow" is specified
+but no default then the parameter will only be passed on to the IdP if
+the caller provides it, and no value will be sent otherwise.</p>
+<p>Examples:</p>
+<h1 id="a-parameter-whose-value-is-fixed">A parameter whose value is fixed</h1>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>name: organization
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>default:
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>- myorg
+</span></code></pre></div>
+<p>A parameter that is not passed by default, but may be set to one of a
+fixed set of values</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>name: prompt
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>allow:
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>- value: login
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>- value: consent
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>- value: select_account
+</span></code></pre></div>
+<p>A parameter that is passed by default but may be overridden by one of
+a fixed set of values</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>name: prompt
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>default: [&quot;login&quot;]
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>allow:
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>- value: consent
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>- value: select_account
+</span></code></pre></div>
+<p>A parameter that may be overridden, but only by values that match a
+regular expression.  For example to restrict <code>login_hint</code> to email
+addresses in your organization's domain:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>name: login_hint
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>allow:
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>- pattern: &#39;^[^@]*@example\.com$&#39;
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a># this allows at most one &quot;@&quot; sign, and requires &quot;example.com&quot; domain.
+</span></code></pre></div>
+<p>Note that the YAML rules around exactly which characters are allowed
+and/or require escaping in different types of string literals are
+convoluted.  For regular expressions the single quoted form is simplest
+as backslash is not considered to be an escape character.  Alternatively
+use the "chomped block" format <code>|-</code>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>  - pattern: |-
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    ^[^@]*@example\.com$
+</span></code></pre></div>
+<p>The hyphen is important, a <code>|</code> block would have a trailing newline
+character.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><em>string</em></td>
+<td>Name specifies the name of the query parameter.</td>
+</tr>
+<tr>
+<td><code>default</code></td>
+<td><em>[]string</em></td>
+<td><em>(Optional)</em> Default specifies a default value or values that will be<br/>passed to the IdP if not overridden.</td>
+</tr>
+<tr>
+<td><code>allow</code></td>
+<td><em><a href="#urlparameterrule">[]URLParameterRule</a></em></td>
+<td><em>(Optional)</em> Allow specifies rules about how the default (if any) may be<br/>overridden via the query string to <code>/oauth2/start</code>.  Only<br/>values that match one or more of the allow rules will be<br/>forwarded to the IdP.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="oidcoptions">OIDCOptions</h3>
+<p>(<strong>Appears on:</strong> <a href="#provider">Provider</a>)</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>issuerURL</code></td>
+<td><em>string</em></td>
+<td>IssuerURL is the OpenID Connect issuer URL<br/>eg: https://accounts.google.com</td>
+</tr>
+<tr>
+<td><code>insecureAllowUnverifiedEmail</code></td>
+<td><em>bool</em></td>
+<td>InsecureAllowUnverifiedEmail prevents failures if an email address in an id_token is not verified<br/>default set to 'false'</td>
+</tr>
+<tr>
+<td><code>insecureSkipIssuerVerification</code></td>
+<td><em>bool</em></td>
+<td>InsecureSkipIssuerVerification skips verification of ID token issuers. When false, ID Token Issuers must match the OIDC discovery URL<br/>default set to 'false'</td>
+</tr>
+<tr>
+<td><code>insecureSkipNonce</code></td>
+<td><em>bool</em></td>
+<td>InsecureSkipNonce skips verifying the ID Token's nonce claim that must match<br/>the random nonce sent in the initial OAuth flow. Otherwise, the nonce is checked<br/>after the initial OAuth redeem &amp; subsequent token refreshes.<br/>default set to 'true'<br/>Warning: In a future release, this will change to 'false' by default for enhanced security.</td>
+</tr>
+<tr>
+<td><code>skipDiscovery</code></td>
+<td><em>bool</em></td>
+<td>SkipDiscovery allows to skip OIDC discovery and use manually supplied Endpoints<br/>default set to 'false'</td>
+</tr>
+<tr>
+<td><code>jwksURL</code></td>
+<td><em>string</em></td>
+<td>JwksURL is the OpenID Connect JWKS URL<br/>eg: https://www.googleapis.com/oauth2/v3/certs</td>
+</tr>
+<tr>
+<td><code>emailClaim</code></td>
+<td><em>string</em></td>
+<td>EmailClaim indicates which claim contains the user email,<br/>default set to 'email'</td>
+</tr>
+<tr>
+<td><code>groupsClaim</code></td>
+<td><em>string</em></td>
+<td>GroupsClaim indicates which claim contains the user groups<br/>default set to 'groups'</td>
+</tr>
+<tr>
+<td><code>userIDClaim</code></td>
+<td><em>string</em></td>
+<td>UserIDClaim indicates which claim contains the user ID<br/>default set to 'email'</td>
+</tr>
+<tr>
+<td><code>audienceClaims</code></td>
+<td><em>[]string</em></td>
+<td>AudienceClaim allows to define any claim that is verified against the client id<br/>By default <code>aud</code> claim is used for verification.</td>
+</tr>
+<tr>
+<td><code>extraAudiences</code></td>
+<td><em>[]string</em></td>
+<td>ExtraAudiences is a list of additional audiences that are allowed<br/>to pass verification in addition to the client id.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="provider">Provider</h3>
+<p>(<strong>Appears on:</strong> <a href="#providers">Providers</a>)</p>
+<p>Provider holds all configuration for a single provider</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>clientID</code></td>
+<td><em>string</em></td>
+<td>ClientID is the OAuth Client ID that is defined in the provider<br/>This value is required for all providers.</td>
+</tr>
+<tr>
+<td><code>clientSecret</code></td>
+<td><em>string</em></td>
+<td>ClientSecret is the OAuth Client Secret that is defined in the provider<br/>This value is required for all providers.</td>
+</tr>
+<tr>
+<td><code>clientSecretFile</code></td>
+<td><em>string</em></td>
+<td>ClientSecretFile is the name of the file<br/>containing the OAuth Client Secret, it will be used if ClientSecret is not set.</td>
+</tr>
+<tr>
+<td><code>keycloakConfig</code></td>
+<td><em><a href="#keycloakoptions">KeycloakOptions</a></em></td>
+<td>KeycloakConfig holds all configurations for Keycloak provider.</td>
+</tr>
+<tr>
+<td><code>azureConfig</code></td>
+<td><em><a href="#azureoptions">AzureOptions</a></em></td>
+<td>AzureConfig holds all configurations for Azure provider.</td>
+</tr>
+<tr>
+<td><code>ADFSConfig</code></td>
+<td><em><a href="#adfsoptions">ADFSOptions</a></em></td>
+<td>ADFSConfig holds all configurations for ADFS provider.</td>
+</tr>
+<tr>
+<td><code>bitbucketConfig</code></td>
+<td><em><a href="#bitbucketoptions">BitbucketOptions</a></em></td>
+<td>BitbucketConfig holds all configurations for Bitbucket provider.</td>
+</tr>
+<tr>
+<td><code>githubConfig</code></td>
+<td><em><a href="#githuboptions">GitHubOptions</a></em></td>
+<td>GitHubConfig holds all configurations for GitHubC provider.</td>
+</tr>
+<tr>
+<td><code>gitlabConfig</code></td>
+<td><em><a href="#gitlaboptions">GitLabOptions</a></em></td>
+<td>GitLabConfig holds all configurations for GitLab provider.</td>
+</tr>
+<tr>
+<td><code>googleConfig</code></td>
+<td><em><a href="#googleoptions">GoogleOptions</a></em></td>
+<td>GoogleConfig holds all configurations for Google provider.</td>
+</tr>
+<tr>
+<td><code>oidcConfig</code></td>
+<td><em><a href="#oidcoptions">OIDCOptions</a></em></td>
+<td>OIDCConfig holds all configurations for OIDC provider<br/>or providers utilize OIDC configurations.</td>
+</tr>
+<tr>
+<td><code>loginGovConfig</code></td>
+<td><em><a href="#logingovoptions">LoginGovOptions</a></em></td>
+<td>LoginGovConfig holds all configurations for LoginGov provider.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><em>string</em></td>
+<td>ID should be a unique identifier for the provider.<br/>This value is required for all providers.</td>
+</tr>
+<tr>
+<td><code>provider</code></td>
+<td><em><a href="#providertype">ProviderType</a></em></td>
+<td>Type is the OAuth provider<br/>must be set from the supported providers group,<br/>otherwise 'Google' is set as default</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><em>string</em></td>
+<td>Name is the providers display name<br/>if set, it will be shown to the users in the login page.</td>
+</tr>
+<tr>
+<td><code>caFiles</code></td>
+<td><em>[]string</em></td>
+<td>CAFiles is a list of paths to CA certificates that should be used when connecting to the provider.<br/>If not specified, the default Go trust sources are used instead</td>
+</tr>
+<tr>
+<td><code>useSystemTrustStore</code></td>
+<td><em>bool</em></td>
+<td>UseSystemTrustStore determines if your custom CA files and the system trust store are used<br/>If set to true, your custom CA files and the system trust store are used otherwise only your custom CA files.</td>
+</tr>
+<tr>
+<td><code>loginURL</code></td>
+<td><em>string</em></td>
+<td>LoginURL is the authentication endpoint</td>
+</tr>
+<tr>
+<td><code>loginURLParameters</code></td>
+<td><em><a href="#loginurlparameter">[]LoginURLParameter</a></em></td>
+<td>LoginURLParameters defines the parameters that can be passed from the start URL to the IdP login URL</td>
+</tr>
+<tr>
+<td><code>redeemURL</code></td>
+<td><em>string</em></td>
+<td>RedeemURL is the token redemption endpoint</td>
+</tr>
+<tr>
+<td><code>profileURL</code></td>
+<td><em>string</em></td>
+<td>ProfileURL is the profile access endpoint</td>
+</tr>
+<tr>
+<td><code>skipClaimsFromProfileURL</code></td>
+<td><em>bool</em></td>
+<td>SkipClaimsFromProfileURL allows to skip request to Profile URL for resolving claims not present in id_token<br/>default set to 'false'</td>
+</tr>
+<tr>
+<td><code>resource</code></td>
+<td><em>string</em></td>
+<td>ProtectedResource is the resource that is protected (Azure AD and ADFS only)</td>
+</tr>
+<tr>
+<td><code>validateURL</code></td>
+<td><em>string</em></td>
+<td>ValidateURL is the access token validation endpoint</td>
+</tr>
+<tr>
+<td><code>scope</code></td>
+<td><em>string</em></td>
+<td>Scope is the OAuth scope specification</td>
+</tr>
+<tr>
+<td><code>allowedGroups</code></td>
+<td><em>[]string</em></td>
+<td>AllowedGroups is a list of restrict logins to members of this group</td>
+</tr>
+<tr>
+<td><code>code_challenge_method</code></td>
+<td><em>string</em></td>
+<td>The code challenge method</td>
+</tr>
+<tr>
+<td><code>backendLogoutURL</code></td>
+<td><em>string</em></td>
+<td>URL to call to perform backend logout, <code>{id_token}</code> would be replaced by the actual <code>id_token</code> if available in the session</td>
+</tr>
+</tbody>
+</table>
+<h3 id="providertype">ProviderType</h3>
+<h4 id="string-alias_1">(<code>string</code> alias)</h4>
+<p>(<strong>Appears on:</strong> <a href="#provider">Provider</a>)</p>
+<p>ProviderType is used to enumerate the different provider type options
+Valid options are: adfs, azure, bitbucket, digitalocean facebook, github,
+gitlab, google, keycloak, keycloak-oidc, linkedin, login.gov, nextcloud
+and oidc.</p>
+<h3 id="providers">Providers</h3>
+<h4 id="provider-alias">(<a href="#provider">[]Provider</a> alias)</h4>
+<p>(<strong>Appears on:</strong> <a href="#alphaoptions">AlphaOptions</a>)</p>
+<p>Providers is a collection of definitions for providers.</p>
+<h3 id="secretsource">SecretSource</h3>
+<p>(<strong>Appears on:</strong> <a href="#claimsource">ClaimSource</a>, <a href="#headervalue">HeaderValue</a>, <a href="#tls">TLS</a>)</p>
+<p>SecretSource references an individual secret value.
+Only one source within the struct should be defined at any time.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td><em>[]byte</em></td>
+<td>Value expects a base64 encoded string value.</td>
+</tr>
+<tr>
+<td><code>fromEnv</code></td>
+<td><em>string</em></td>
+<td>FromEnv expects the name of an environment variable.</td>
+</tr>
+<tr>
+<td><code>fromFile</code></td>
+<td><em>string</em></td>
+<td>FromFile expects a path to a file containing the secret value.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="server">Server</h3>
+<p>(<strong>Appears on:</strong> <a href="#alphaoptions">AlphaOptions</a>)</p>
+<p>Server represents the configuration for an HTTP(S) server</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BindAddress</code></td>
+<td><em>string</em></td>
+<td>BindAddress is the address on which to serve traffic.<br/>Leave blank or set to "-" to disable.</td>
+</tr>
+<tr>
+<td><code>SecureBindAddress</code></td>
+<td><em>string</em></td>
+<td>SecureBindAddress is the address on which to serve secure traffic.<br/>Leave blank or set to "-" to disable.</td>
+</tr>
+<tr>
+<td><code>TLS</code></td>
+<td><em><a href="#tls">TLS</a></em></td>
+<td>TLS contains the information for loading the certificate and key for the<br/>secure traffic and further configuration for the TLS server.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tls">TLS</h3>
+<p>(<strong>Appears on:</strong> <a href="#server">Server</a>)</p>
+<p>TLS contains the information for loading a TLS certificate and key
+as well as an optional minimal TLS version that is acceptable.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Key</code></td>
+<td><em><a href="#secretsource">SecretSource</a></em></td>
+<td>Key is the TLS key data to use.<br/>Typically this will come from a file.</td>
+</tr>
+<tr>
+<td><code>Cert</code></td>
+<td><em><a href="#secretsource">SecretSource</a></em></td>
+<td>Cert is the TLS certificate data to use.<br/>Typically this will come from a file.</td>
+</tr>
+<tr>
+<td><code>MinVersion</code></td>
+<td><em>string</em></td>
+<td>MinVersion is the minimal TLS version that is acceptable.<br/>E.g. Set to "TLS1.3" to select TLS version 1.3</td>
+</tr>
+<tr>
+<td><code>CipherSuites</code></td>
+<td><em>[]string</em></td>
+<td>CipherSuites is a list of TLS cipher suites that are allowed.<br/>E.g.:<br/>- TLS_RSA_WITH_RC4_128_SHA<br/>- TLS_RSA_WITH_AES_256_GCM_SHA384<br/>If not specified, the default Go safe cipher list is used.<br/>List of valid cipher suites can be found in the <a href="https://pkg.go.dev/crypto/tls#pkg-constants">crypto/tls documentation</a>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="urlparameterrule">URLParameterRule</h3>
+<p>(<strong>Appears on:</strong> <a href="#loginurlparameter">LoginURLParameter</a>)</p>
+<p>URLParameterRule represents a rule by which query parameters
+passed to the <code>/oauth2/start</code> endpoint are checked to determine whether
+they are valid overrides for the given parameter passed to the IdP's
+login URL.  Either Value or Pattern should be supplied, not both.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td><em>string</em></td>
+<td>A Value rule matches just this specific value</td>
+</tr>
+<tr>
+<td><code>pattern</code></td>
+<td><em>string</em></td>
+<td>A Pattern rule gives a regular expression that must be matched by<br/>some substring of the value.  The expression is <em>not</em> automatically<br/>anchored to the start and end of the value, if you <em>want</em> to restrict<br/>the whole parameter value you must anchor it yourself with <code>^</code> and <code>$</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="upstream">Upstream</h3>
+<p>(<strong>Appears on:</strong> <a href="#upstreamconfig">UpstreamConfig</a>)</p>
+<p>Upstream represents the configuration for an upstream server.
+Requests will be proxied to this upstream if the path matches the request path.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><em>string</em></td>
+<td>ID should be a unique identifier for the upstream.<br/>This value is required for all upstreams.</td>
+</tr>
+<tr>
+<td><code>path</code></td>
+<td><em>string</em></td>
+<td>Path is used to map requests to the upstream server.<br/>The closest match will take precedence and all Paths must be unique.<br/>Path can also take a pattern when used with RewriteTarget.<br/>Path segments can be captured and matched using regular experessions.<br/>Eg:<br/>- <code>^/foo$</code>: Match only the explicit path <code>/foo</code><br/>- <code>^/bar/$</code>: Match any path prefixed with <code>/bar/</code><br/>- <code>^/baz/(.*)$</code>: Match any path prefixed with <code>/baz</code> and capture the remaining path for use with RewriteTarget</td>
+</tr>
+<tr>
+<td><code>rewriteTarget</code></td>
+<td><em>string</em></td>
+<td>RewriteTarget allows users to rewrite the request path before it is sent to<br/>the upstream server.<br/>Use the Path to capture segments for reuse within the rewrite target.<br/>Eg: With a Path of <code>^/baz/(.*)</code>, a RewriteTarget of <code>/foo/$1</code> would rewrite<br/>the request <code>/baz/abc/123</code> to <code>/foo/abc/123</code> before proxying to the<br/>upstream server.</td>
+</tr>
+<tr>
+<td><code>uri</code></td>
+<td><em>string</em></td>
+<td>The URI of the upstream server. This may be an HTTP(S) server of a File<br/>based URL. It may include a path, in which case all requests will be served<br/>under that path.<br/>Eg:<br/>- http://localhost:8080<br/>- https://service.localhost<br/>- https://service.localhost/path<br/>- file://host/path<br/>If the URI's path is "/base" and the incoming request was for "/dir",<br/>the upstream request will be for "/base/dir".</td>
+</tr>
+<tr>
+<td><code>insecureSkipTLSVerify</code></td>
+<td><em>bool</em></td>
+<td>InsecureSkipTLSVerify will skip TLS verification of upstream HTTPS hosts.<br/>This option is insecure and will allow potential Man-In-The-Middle attacks<br/>between OAuth2 Proxy and the upstream server.<br/>Defaults to false.</td>
+</tr>
+<tr>
+<td><code>static</code></td>
+<td><em>bool</em></td>
+<td>Static will make all requests to this upstream have a static response.<br/>The response will have a body of "Authenticated" and a response code<br/>matching StaticCode.<br/>If StaticCode is not set, the response will return a 200 response.</td>
+</tr>
+<tr>
+<td><code>staticCode</code></td>
+<td><em>int</em></td>
+<td>StaticCode determines the response code for the Static response.<br/>This option can only be used with Static enabled.</td>
+</tr>
+<tr>
+<td><code>flushInterval</code></td>
+<td><em><a href="#duration">Duration</a></em></td>
+<td>FlushInterval is the period between flushing the response buffer when<br/>streaming response from the upstream.<br/>Defaults to 1 second.</td>
+</tr>
+<tr>
+<td><code>passHostHeader</code></td>
+<td><em>bool</em></td>
+<td>PassHostHeader determines whether the request host header should be proxied<br/>to the upstream server.<br/>Defaults to true.</td>
+</tr>
+<tr>
+<td><code>proxyWebSockets</code></td>
+<td><em>bool</em></td>
+<td>ProxyWebSockets enables proxying of websockets to upstream servers<br/>Defaults to true.</td>
+</tr>
+<tr>
+<td><code>timeout</code></td>
+<td><em><a href="#duration">Duration</a></em></td>
+<td>Timeout is the maximum duration the server will wait for a response from the upstream server.<br/>Defaults to 30 seconds.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="upstreamconfig">UpstreamConfig</h3>
+<p>(<strong>Appears on:</strong> <a href="#alphaoptions">AlphaOptions</a>)</p>
+<p>UpstreamConfig is a collection of definitions for upstream servers.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>proxyRawPath</code></td>
+<td><em>bool</em></td>
+<td>ProxyRawPath will pass the raw url path to upstream allowing for urls<br/>like: "/%2F/" which would otherwise be redirected to "/"</td>
+</tr>
+<tr>
+<td><code>upstreams</code></td>
+<td><em><a href="#upstream">[]Upstream</a></em></td>
+<td>Upstreams represents the configuration for the upstream servers.<br/>Requests will be proxied to this upstream if the path matches the request path.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 20, 2024</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../overview/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Overview
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../overview/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Overview
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2012 - 2024 OAuth2 Proxy Authors
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/oauth2-proxy" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+    
+  
+
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="github" checked>
+          <span class="task-list-indicator"></span>
+          GitHub
+        </label>
+      </li>
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.path", "navigation.expand", "navigation.indexes", "navigation.footer", "content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>
