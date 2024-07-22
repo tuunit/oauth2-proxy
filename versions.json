@@ -2,9 +2,19 @@
   {
     "version": "next",
     "title": "next",
+    "aliases": []
+  },
+  {
+    "version": "7.6",
+    "title": "7.6",
     "aliases": [
       "latest"
     ]
+  },
+  {
+    "version": "7.5",
+    "title": "7.5",
+    "aliases": []
   },
   {
     "version": "7.4",
@@ -19,6 +29,16 @@
   {
     "version": "7.2",
     "title": "7.2",
+    "aliases": []
+  },
+  {
+    "version": "7.1",
+    "title": "7.1",
+    "aliases": []
+  },
+  {
+    "version": "7.0",
+    "title": "7.0",
     "aliases": []
   }
 ]

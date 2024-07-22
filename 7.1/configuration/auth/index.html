@@ -1,0 +1,1759 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="OAuth2 Proxy Authors">
+      
+      
+      
+        <link rel="prev" href="../overview/">
+      
+      
+        <link rel="next" href="../sessions/">
+      
+      
+      <link rel="icon" href="../../assets/logos/OAuth2_Proxy_icon.svg">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.29">
+    
+    
+      
+        <title>OAuth Provider Configuration - OAuth2 Proxy Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.76a95c52.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="grey" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#google-auth-provider" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+          <aside class="md-banner md-banner--warning">
+            <div class="md-banner__inner md-grid md-typeset">
+              
+  You're not viewing the latest version.
+  <a href="../../.."> 
+    <strong>Click here to go to latest.</strong>
+  </a>
+
+            </div>
+            <script>var el=document.querySelector("[data-md-component=outdated]"),outdated=__md_get("__outdated",sessionStorage);!0===outdated&&el&&(el.hidden=!1)</script>
+          </aside>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="OAuth2 Proxy Documentation" class="md-header__button md-logo" aria-label="OAuth2 Proxy Documentation" data-md-component="logo">
+      
+  <img src="../../assets/logos/OAuth2_Proxy_filled_icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OAuth2 Proxy Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              OAuth Provider Configuration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="grey" data-md-color-accent="green"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="green"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/oauth2-proxy/oauth2-proxy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    oauth2-proxy/oauth2-proxy
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="OAuth2 Proxy Documentation" class="md-nav__button md-logo" aria-label="OAuth2 Proxy Documentation" data-md-component="logo">
+      
+  <img src="../../assets/logos/OAuth2_Proxy_filled_icon.svg" alt="logo">
+
+    </a>
+    OAuth2 Proxy Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/oauth2-proxy/oauth2-proxy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    oauth2-proxy/oauth2-proxy
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../behaviour/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Behaviour
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Configuration
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Configuration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    OAuth Provider Configuration
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    OAuth Provider Configuration
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#google-auth-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Google Auth Provider
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Google Auth Provider">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#restrict-auth-to-specific-google-groups-on-your-domain-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restrict auth to specific Google groups on your domain. (optional)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-auth-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure Auth Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#facebook-auth-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Facebook Auth Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-auth-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub Auth Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keycloak-auth-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keycloak Auth Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gitlab-auth-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitLab Auth Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linkedin-auth-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      LinkedIn Auth Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microsoft-azure-ad-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Microsoft Azure AD Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openid-connect-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenID Connect Provider
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OpenID Connect Provider">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dex" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dex
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#okta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Okta
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#okta-localhost" class="md-nav__link">
+    <span class="md-ellipsis">
+      Okta - localhost
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logingov-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      login.gov Provider
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="login.gov Provider">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#skip-oidc-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Skip OIDC discovery
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nextcloud-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nextcloud Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#digitalocean-auth-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      DigitalOcean Auth Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bitbucket-auth-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bitbucket Auth Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gitea-auth-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gitea Auth Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#email-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Email Authentication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-a-new-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding a new Provider
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sessions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Session Storage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TLS Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alpha_config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Alpha Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Features
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Features
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/endpoints/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Endpoints
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Community
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Community
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../community/security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Security
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#google-auth-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Google Auth Provider
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Google Auth Provider">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#restrict-auth-to-specific-google-groups-on-your-domain-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restrict auth to specific Google groups on your domain. (optional)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-auth-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure Auth Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#facebook-auth-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Facebook Auth Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-auth-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub Auth Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keycloak-auth-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keycloak Auth Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gitlab-auth-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitLab Auth Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linkedin-auth-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      LinkedIn Auth Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microsoft-azure-ad-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Microsoft Azure AD Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openid-connect-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenID Connect Provider
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OpenID Connect Provider">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dex" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dex
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#okta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Okta
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#okta-localhost" class="md-nav__link">
+    <span class="md-ellipsis">
+      Okta - localhost
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logingov-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      login.gov Provider
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="login.gov Provider">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#skip-oidc-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Skip OIDC discovery
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nextcloud-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nextcloud Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#digitalocean-auth-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      DigitalOcean Auth Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bitbucket-auth-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bitbucket Auth Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gitea-auth-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gitea Auth Provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#email-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Email Authentication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-a-new-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding a new Provider
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>OAuth Provider Configuration</h1>
+
+<p>You will need to register an OAuth application with a Provider (Google, GitHub or another provider), and configure it with Redirect URI(s) for the domain you intend to run <code>oauth2-proxy</code> on.</p>
+<p>Valid providers are :</p>
+<ul>
+<li><a href="#google-auth-provider">Google</a> <em>default</em></li>
+<li><a href="#azure-auth-provider">Azure</a></li>
+<li><a href="#facebook-auth-provider">Facebook</a></li>
+<li><a href="#github-auth-provider">GitHub</a></li>
+<li><a href="#keycloak-auth-provider">Keycloak</a></li>
+<li><a href="#gitlab-auth-provider">GitLab</a></li>
+<li><a href="#linkedin-auth-provider">LinkedIn</a></li>
+<li><a href="#microsoft-azure-ad-provider">Microsoft Azure AD</a></li>
+<li><a href="#openid-connect-provider">OpenID Connect</a></li>
+<li><a href="#logingov-provider">login.gov</a></li>
+<li><a href="#nextcloud-provider">Nextcloud</a></li>
+<li><a href="#digitalocean-auth-provider">DigitalOcean</a></li>
+<li><a href="#bitbucket-auth-provider">Bitbucket</a></li>
+<li><a href="#gitea-auth-provider">Gitea</a></li>
+</ul>
+<p>The provider can be selected using the <code>provider</code> configuration value.</p>
+<p>Please note that not all providers support all claims. The <code>preferred_username</code> claim is currently only supported by the OpenID Connect provider.</p>
+<h3 id="google-auth-provider">Google Auth Provider</h3>
+<p>For Google, the registration steps are:</p>
+<ol>
+<li>Create a new project: https://console.developers.google.com/project</li>
+<li>Choose the new project from the top right project dropdown (only if another project is selected)</li>
+<li>In the project Dashboard center pane, choose <strong>"API Manager"</strong></li>
+<li>In the left Nav pane, choose <strong>"Credentials"</strong></li>
+<li>In the center pane, choose <strong>"OAuth consent screen"</strong> tab. Fill in <strong>"Product name shown to users"</strong> and hit save.</li>
+<li>In the center pane, choose <strong>"Credentials"</strong> tab.<ul>
+<li>Open the <strong>"New credentials"</strong> drop down</li>
+<li>Choose <strong>"OAuth client ID"</strong></li>
+<li>Choose <strong>"Web application"</strong></li>
+<li>Application name is freeform, choose something appropriate</li>
+<li>Authorized JavaScript origins is your domain ex: <code>https://internal.yourcompany.com</code></li>
+<li>Authorized redirect URIs is the location of oauth2/callback ex: <code>https://internal.yourcompany.com/oauth2/callback</code></li>
+<li>Choose <strong>"Create"</strong></li>
+</ul>
+</li>
+<li>Take note of the <strong>Client ID</strong> and <strong>Client Secret</strong></li>
+</ol>
+<p>It's recommended to refresh sessions on a short interval (1h) with <code>cookie-refresh</code> setting which validates that the account is still authorized.</p>
+<h4 id="restrict-auth-to-specific-google-groups-on-your-domain-optional">Restrict auth to specific Google groups on your domain. (optional)</h4>
+<ol>
+<li>Create a service account: https://developers.google.com/identity/protocols/OAuth2ServiceAccount and make sure to download the json file.</li>
+<li>Make note of the Client ID for a future step.</li>
+<li>Under "APIs &amp; Auth", choose APIs.</li>
+<li>Click on Admin SDK and then Enable API.</li>
+<li>Follow the steps on https://developers.google.com/admin-sdk/directory/v1/guides/delegation#delegate_domain-wide_authority_to_your_service_account and give the client id from step 2 the following oauth scopes:</li>
+</ol>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>https://www.googleapis.com/auth/admin.directory.group.readonly
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>https://www.googleapis.com/auth/admin.directory.user.readonly
+</span></code></pre></div>
+<ol>
+<li>Follow the steps on https://support.google.com/a/answer/60757 to enable Admin API access.</li>
+<li>Create or choose an existing administrative email address on the Gmail domain to assign to the <code>google-admin-email</code> flag. This email will be impersonated by this client to make calls to the Admin SDK. See the note on the link from step 5 for the reason why.</li>
+<li>Create or choose an existing email group and set that email to the <code>google-group</code> flag. You can pass multiple instances of this flag with different groups
+    and the user will be checked against all the provided groups.</li>
+<li>Lock down the permissions on the json file downloaded from step 1 so only oauth2-proxy is able to read the file and set the path to the file in the <code>google-service-account-json</code> flag.</li>
+<li>Restart oauth2-proxy.</li>
+</ol>
+<p>Note: The user is checked against the group members list on initial authentication and every time the token is refreshed ( about once an hour ).</p>
+<h3 id="azure-auth-provider">Azure Auth Provider</h3>
+<ol>
+<li>Add an application: go to <a href="https://portal.azure.com">https://portal.azure.com</a>, choose <strong>"Azure Active Directory"</strong> in the left menu, select <strong>"App registrations"</strong> and then click on <strong>"New app registration"</strong>.</li>
+<li>Pick a name and choose <strong>"Webapp / API"</strong> as application type. Use <code>https://internal.yourcompany.com</code> as Sign-on URL. Click <strong>"Create"</strong>.</li>
+<li>On the <strong>"Settings"</strong> / <strong>"Properties"</strong> page of the app, pick a logo and select <strong>"Multi-tenanted"</strong> if you want to allow users from multiple organizations to access your app. Note down the application ID. Click <strong>"Save"</strong>.</li>
+<li>On the <strong>"Settings"</strong> / <strong>"Required Permissions"</strong> page of the app, click on <strong>"Windows Azure Active Directory"</strong> and then on <strong>"Access the directory as the signed in user"</strong>. Hit <strong>"Save"</strong> and then then on <strong>"Grant permissions"</strong> (you might need another admin to do this).</li>
+<li>On the <strong>"Settings"</strong> / <strong>"Reply URLs"</strong> page of the app, add <code>https://internal.yourcompanycom/oauth2/callback</code> for each host that you want to protect by the oauth2 proxy. Click <strong>"Save"</strong>.</li>
+<li>On the <strong>"Settings"</strong> / <strong>"Keys"</strong> page of the app, add a new key and note down the value after hitting <strong>"Save"</strong>.</li>
+<li>Configure the proxy with</li>
+</ol>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>   --provider=azure
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>   --client-id=&lt;application ID from step 3&gt;
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>   --client-secret=&lt;value from step 6&gt;
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>   --oidc-issuer-url=https://sts.windows.net/{tenant-id}/
+</span></code></pre></div>
+<p>Note: When using the Azure Auth provider with nginx and the cookie session store you may find the cookie is too large and doesn't get passed through correctly. Increasing the proxy_buffer_size in nginx or implementing the <a href="../sessions/#redis-storage">redis session storage</a> should resolve this.</p>
+<h3 id="facebook-auth-provider">Facebook Auth Provider</h3>
+<ol>
+<li>Create a new FB App from https://developers.facebook.com/</li>
+<li>Under FB Login, set your Valid OAuth redirect URIs to <code>https://internal.yourcompany.com/oauth2/callback</code></li>
+</ol>
+<h3 id="github-auth-provider">GitHub Auth Provider</h3>
+<ol>
+<li>Create a new project: https://github.com/settings/developers</li>
+<li>Under <code>Authorization callback URL</code> enter the correct url ie <code>https://internal.yourcompany.com/oauth2/callback</code></li>
+</ol>
+<p>The GitHub auth provider supports two additional ways to restrict authentication to either organization and optional team level access, or to collaborators of a repository. Restricting by these options is normally accompanied with <code>--email-domain=*</code></p>
+<p>NOTE: When <code>--github-user</code> is set, the specified users are allowed to login even if they do not belong to the specified org and team or collaborators.</p>
+<p>To restrict by organization only, include the following flag:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>    --github-org=&quot;&quot;: restrict logins to members of this organisation
+</span></code></pre></div>
+<p>To restrict within an organization to specific teams, include the following flag in addition to <code>-github-org</code>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>    --github-team=&quot;&quot;: restrict logins to members of any of these teams (slug), separated by a comma
+</span></code></pre></div>
+<p>If you would rather restrict access to collaborators of a repository, those users must either have push access to a public repository or any access to a private repository:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>    --github-repo=&quot;&quot;: restrict logins to collaborators of this repository formatted as orgname/repo
+</span></code></pre></div>
+<p>If you'd like to allow access to users with <strong>read only</strong> access to a <strong>public</strong> repository you will need to provide a <a href="https://github.com/settings/tokens">token</a> for a user that has write access to the repository. The token must be created with at least the <code>public_repo</code> scope:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>    --github-token=&quot;&quot;: the token to use when verifying repository collaborators
+</span></code></pre></div>
+<p>To allow a user to login with their username even if they do not belong to the specified org and team or collaborators, separated by a comma</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>    --github-user=&quot;&quot;: allow logins by username, separated by a comma
+</span></code></pre></div>
+<p>If you are using GitHub enterprise, make sure you set the following to the appropriate url:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>    --login-url=&quot;http(s)://&lt;enterprise github host&gt;/login/oauth/authorize&quot;
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    --redeem-url=&quot;http(s)://&lt;enterprise github host&gt;/login/oauth/access_token&quot;
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    --validate-url=&quot;http(s)://&lt;enterprise github host&gt;/api/v3&quot;
+</span></code></pre></div>
+<h3 id="keycloak-auth-provider">Keycloak Auth Provider</h3>
+<ol>
+<li>Create new client in your Keycloak with <strong>Access Type</strong> 'confidental' and <strong>Valid Redirect URIs</strong> 'https://internal.yourcompany.com/oauth2/callback'</li>
+<li>Take note of the Secret in the credential tab of the client</li>
+<li>Create a mapper with <strong>Mapper Type</strong> 'Group Membership' and <strong>Token Claim Name</strong> 'groups'.</li>
+</ol>
+<p>Make sure you set the following to the appropriate url:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>    --provider=keycloak
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    --client-id=&lt;client you have created&gt;
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    --client-secret=&lt;your client&#39;s secret&gt;
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    --login-url=&quot;http(s)://&lt;keycloak host&gt;/auth/realms/&lt;your realm&gt;/protocol/openid-connect/auth&quot;
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    --redeem-url=&quot;http(s)://&lt;keycloak host&gt;/auth/realms/&lt;your realm&gt;/protocol/openid-connect/token&quot;
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    --profile-url=&quot;http(s)://&lt;keycloak host&gt;/auth/realms/&lt;your realm&gt;/protocol/openid-connect/userinfo&quot;
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    --validate-url=&quot;http(s)://&lt;keycloak host&gt;/auth/realms/&lt;your realm&gt;/protocol/openid-connect/userinfo&quot;
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    --keycloak-group=&lt;first_allowed_user_group&gt;
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    --keycloak-group=&lt;second_allowed_user_group&gt;
+</span></code></pre></div>
+<p>For group based authorization, the optional <code>--keycloak-group</code> (legacy) or <code>--allowed-group</code> (global standard)
+flags can be used to specify which groups to limit access to.</p>
+<p>If these are unset but a <code>groups</code> mapper is set up above in step (3), the provider will still
+populate the <code>X-Forwarded-Groups</code> header to your upstream server with the <code>groups</code> data in the
+Keycloak userinfo endpoint response.</p>
+<p>The group management in keycloak is using a tree. If you create a group named admin in keycloak
+you should define the 'keycloak-group' value to /admin.</p>
+<h3 id="gitlab-auth-provider">GitLab Auth Provider</h3>
+<p>This auth provider has been tested against Gitlab version 12.X. Due to Gitlab API changes, it may not work for version prior to 12.X (see <a href="https://github.com/oauth2-proxy/oauth2-proxy/issues/994">994</a>).</p>
+<p>Whether you are using GitLab.com or self-hosting GitLab, follow <a href="https://docs.gitlab.com/ce/integration/oauth_provider.html">these steps to add an application</a>. Make sure to enable at least the <code>openid</code>, <code>profile</code> and <code>email</code> scopes, and set the redirect url to your application url e.g. https://myapp.com/oauth2/callback.</p>
+<p>If you need projects filtering, add the extra <code>read_api</code> scope to your application.</p>
+<p>The following config should be set to ensure that the oauth will work properly. To get a cookie secret follow <a href="../overview/#generating-a-cookie-secret">these steps</a></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>    --provider=&quot;gitlab&quot;
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    --redirect-url=&quot;https://myapp.com/oauth2/callback&quot; // Should be the same as the redirect url for the application in gitlab
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    --client-id=GITLAB_CLIENT_ID
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    --client-secret=GITLAB_CLIENT_SECRET
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    --cookie-secret=COOKIE_SECRET
+</span></code></pre></div>
+<p>Restricting by group membership is possible with the following option:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>    --gitlab-group=&quot;mygroup,myothergroup&quot;: restrict logins to members of any of these groups (slug), separated by a comma
+</span></code></pre></div>
+<p>If you are using self-hosted GitLab, make sure you set the following to the appropriate URL:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>    --oidc-issuer-url=&quot;&lt;your gitlab url&gt;&quot;
+</span></code></pre></div>
+<h3 id="linkedin-auth-provider">LinkedIn Auth Provider</h3>
+<p>For LinkedIn, the registration steps are:</p>
+<ol>
+<li>Create a new project: https://www.linkedin.com/secure/developer</li>
+<li>In the OAuth User Agreement section:<ul>
+<li>In default scope, select r_basicprofile and r_emailaddress.</li>
+<li>In "OAuth 2.0 Redirect URLs", enter <code>https://internal.yourcompany.com/oauth2/callback</code></li>
+</ul>
+</li>
+<li>Fill in the remaining required fields and Save.</li>
+<li>Take note of the <strong>Consumer Key / API Key</strong> and <strong>Consumer Secret / Secret Key</strong></li>
+</ol>
+<h3 id="microsoft-azure-ad-provider">Microsoft Azure AD Provider</h3>
+<p>For adding an application to the Microsoft Azure AD follow <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app">these steps to add an application</a>.</p>
+<p>Take note of your <code>TenantId</code> if applicable for your situation. The <code>TenantId</code> can be used to override the default <code>common</code> authorization server with a tenant specific server.</p>
+<h3 id="openid-connect-provider">OpenID Connect Provider</h3>
+<p>OpenID Connect is a spec for OAUTH 2.0 + identity that is implemented by many major providers and several open source projects.</p>
+<p>This provider was originally built against CoreOS Dex and we will use it as an example.
+The OpenID Connect Provider (OIDC) can also be used to connect to other Identity Providers such as Okta, an example can be found below.</p>
+<h4 id="dex">Dex</h4>
+<p>To configure the OIDC provider for Dex, perform the following steps:</p>
+<ol>
+<li>
+<p>Download Dex:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>go get github.com/dexidp/dex
+</span></code></pre></div>
+<p>See the <a href="https://dexidp.io/docs/getting-started/">getting started guide</a> for more details.</p>
+</li>
+<li>
+<p>Setup oauth2-proxy with the correct provider and using the default ports and callbacks. Add a configuration block to the <code>staticClients</code> section of <code>examples/config-dev.yaml</code>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>- id: oauth2-proxy
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>redirectURIs:
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>- &#39;http://127.0.0.1:4180/oauth2/callback&#39;
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>name: &#39;oauth2-proxy&#39;
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>secret: proxy
+</span></code></pre></div>
+</li>
+<li>
+<p>Launch Dex: from <code>$GOPATH/github.com/dexidp/dex</code>, run:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>bin/dex serve examples/config-dev.yaml
+</span></code></pre></div>
+</li>
+<li>
+<p>In a second terminal, run the oauth2-proxy with the following args:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>-provider oidc
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>-provider-display-name &quot;My OIDC Provider&quot;
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>-client-id oauth2-proxy
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>-client-secret proxy
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>-redirect-url http://127.0.0.1:4180/oauth2/callback
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>-oidc-issuer-url http://127.0.0.1:5556/dex
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>-cookie-secure=false
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>-cookie-secret=secret
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>-email-domain kilgore.trout
+</span></code></pre></div>
+<p>To serve the current working directory as a web site under the <code>/static</code> endpoint, add:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>-upstream file://$PWD/#/static/
+</span></code></pre></div>
+</li>
+<li>
+<p>Test the setup by visiting http://127.0.0.1:4180 or http://127.0.0.1:4180/static .</p>
+</li>
+</ol>
+<p>See also <a href="https://github.com/oauth2-proxy/oauth2-proxy/blob/master/contrib/local-environment">our local testing environment</a> for a self-contained example using Docker and etcd as storage for Dex.</p>
+<h4 id="okta">Okta</h4>
+<p>To configure the OIDC provider for Okta, perform the following steps:</p>
+<ol>
+<li>Log in to Okta using an administrative account. It is suggested you try this in preview first, <code>example.oktapreview.com</code></li>
+<li>(OPTIONAL) If you want to configure authorization scopes and claims to be passed on to multiple applications,
+you may wish to configure an authorization server for each application. Otherwise, the provided <code>default</code> will work.</li>
+<li>Navigate to <strong>Security</strong> then select <strong>API</strong></li>
+<li>Click <strong>Add Authorization Server</strong>, if this option is not available you may require an additional license for a custom authorization server.</li>
+<li>Fill out the <strong>Name</strong> with something to describe the application you are protecting. e.g. 'Example App'.</li>
+<li>For <strong>Audience</strong>, pick the URL of the application you wish to protect: https://example.corp.com</li>
+<li>Fill out a <strong>Description</strong></li>
+<li>Add any <strong>Access Policies</strong> you wish to configure to limit application access.</li>
+<li>The default settings will work for other options.
+<a href="https://developer.okta.com/docs/guides/customize-authz-server/overview/">See Okta documentation for more information on Authorization Servers</a></li>
+<li>Navigate to <strong>Applications</strong> then select <strong>Add Application</strong>.</li>
+<li>Select <strong>Web</strong> for the <strong>Platform</strong> setting.</li>
+<li>Select <strong>OpenID Connect</strong> and click <strong>Create</strong></li>
+<li>Pick an <strong>Application Name</strong> such as <code>Example App</code>.</li>
+<li>Set the <strong>Login redirect URI</strong> to <code>https://example.corp.com</code>.</li>
+<li>Under <strong>General</strong> set the <strong>Allowed grant types</strong> to <code>Authorization Code</code> and <code>Refresh Token</code>.</li>
+<li>Leave the rest as default, taking note of the <code>Client ID</code> and <code>Client Secret</code>.</li>
+<li>Under <strong>Assignments</strong> select the users or groups you wish to access your application.</li>
+<li>
+<p>Create a configuration file like the following:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>provider = &quot;oidc&quot;
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>redirect_url = &quot;https://example.corp.com/oauth2/callback&quot;
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>oidc_issuer_url = &quot;https://corp.okta.com/oauth2/abCd1234&quot;
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>upstreams = [
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>    &quot;https://example.corp.com&quot;
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>]
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>email_domains = [
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>    &quot;corp.com&quot;
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>]
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>client_id = &quot;XXXXX&quot;
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>client_secret = &quot;YYYYY&quot;
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>pass_access_token = true
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>cookie_secret = &quot;ZZZZZ&quot;
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>skip_provider_button = true
+</span></code></pre></div>
+</li>
+</ol>
+<p>The <code>oidc_issuer_url</code> is based on URL from your <strong>Authorization Server</strong>'s <strong>Issuer</strong> field in step 2, or simply https://corp.okta.com .
+The <code>client_id</code> and <code>client_secret</code> are configured in the application settings.
+Generate a unique <code>client_secret</code> to encrypt the cookie.</p>
+<p>Then you can start the oauth2-proxy with <code>./oauth2-proxy --config /etc/example.cfg</code></p>
+<h4 id="okta-localhost">Okta - localhost</h4>
+<ol>
+<li>Signup for developer account: https://developer.okta.com/signup/</li>
+<li>Create New <code>Web</code> Application: https://${your-okta-domain}/dev/console/apps/new</li>
+<li>Example Application Settings for localhost:</li>
+<li><strong>Name:</strong> My Web App</li>
+<li><strong>Base URIs:</strong> http://localhost:4180/</li>
+<li><strong>Login redirect URIs:</strong> http://localhost:4180/oauth2/callback</li>
+<li><strong>Logout redirect URIs:</strong> http://localhost:4180/</li>
+<li><strong>Group assignments:</strong> <code>Everyone</code></li>
+<li><strong>Grant type allowed:</strong> <code>Authorization Code</code> and <code>Refresh Token</code></li>
+<li>Make note of the <code>Client ID</code> and <code>Client secret</code>, they are needed in a future step</li>
+<li>Make note of the <strong>default</strong> Authorization Server Issuer URI from: https://${your-okta-domain}/admin/oauth2/as</li>
+<li>Example config file <code>/etc/localhost.cfg</code>
+    <div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>provider = &quot;oidc&quot;
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>redirect_url = &quot;http://localhost:4180/oauth2/callback&quot;
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>oidc_issuer_url = &quot;https://$\{your-okta-domain\}/oauth2/default&quot;
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>upstreams = [
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>    &quot;http://0.0.0.0:8080&quot;
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>]
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>email_domains = [
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>    &quot;*&quot;
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>]
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>client_id = &quot;XXX&quot;
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>client_secret = &quot;YYY&quot;
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>pass_access_token = true
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>cookie_secret = &quot;ZZZ&quot;
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>cookie_secure = false
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>skip_provider_button = true
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a># Note: use the following for testing within a container
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a># http_address = &quot;0.0.0.0:4180&quot;
+</span></code></pre></div></li>
+<li>Then you can start the oauth2-proxy with <code>./oauth2-proxy --config /etc/localhost.cfg</code></li>
+</ol>
+<h3 id="logingov-provider">login.gov Provider</h3>
+<p>login.gov is an OIDC provider for the US Government.
+If you are a US Government agency, you can contact the login.gov team through the contact information
+that you can find on https://login.gov/developers/ and work with them to understand how to get login.gov
+accounts for integration/test and production access.</p>
+<p>A developer guide is available here: https://developers.login.gov/, though this proxy handles everything
+but the data you need to create to register your application in the login.gov dashboard.</p>
+<p>As a demo, we will assume that you are running your application that you want to secure locally on
+http://localhost:3000/, that you will be starting your proxy up on http://localhost:4180/, and that
+you have an agency integration account for testing.</p>
+<p>First, register your application in the dashboard.  The important bits are:
+  * Identity protocol:  make this <code>Openid connect</code>
+  * Issuer:  do what they say for OpenID Connect.  We will refer to this string as <code>${LOGINGOV_ISSUER}</code>.
+  * Public key:  This is a self-signed certificate in .pem format generated from a 2048 bit RSA private key.
+    A quick way to do this is <code>openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 3650 -nodes -subj '/C=US/ST=Washington/L=DC/O=GSA/OU=18F/CN=localhost'</code>,
+    The contents of the <code>key.pem</code> shall be referred to as <code>${OAUTH2_PROXY_JWT_KEY}</code>.
+  * Return to App URL:  Make this be <code>http://localhost:4180/</code>
+  * Redirect URIs:  Make this be <code>http://localhost:4180/oauth2/callback</code>.
+  * Attribute Bundle:  Make sure that email is selected.</p>
+<p>Now start the proxy up with the following options:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>./oauth2-proxy -provider login.gov \
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>  -client-id=${LOGINGOV_ISSUER} \
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>  -redirect-url=http://localhost:4180/oauth2/callback \
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>  -oidc-issuer-url=https://idp.int.identitysandbox.gov/ \
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>  -cookie-secure=false \
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>  -email-domain=gsa.gov \
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>  -upstream=http://localhost:3000/ \
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>  -cookie-secret=somerandomstring12341234567890AB \
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>  -cookie-domain=localhost \
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>  -skip-provider-button=true \
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>  -pubjwk-url=https://idp.int.identitysandbox.gov/api/openid_connect/certs \
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>  -profile-url=https://idp.int.identitysandbox.gov/api/openid_connect/userinfo \
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>  -jwt-key=&quot;${OAUTH2_PROXY_JWT_KEY}&quot;
+</span></code></pre></div>
+You can also set all these options with environment variables, for use in cloud/docker environments.
+One tricky thing that you may encounter is that some cloud environments will pass in environment
+variables in a docker env-file, which does not allow multiline variables like a PEM file.
+If you encounter this, then you can create a <code>jwt_signing_key.pem</code> file in the top level
+directory of the repo which contains the key in PEM format and then do your docker build.
+The docker build process will copy that file into your image which you can then access by
+setting the <code>OAUTH2_PROXY_JWT_KEY_FILE=/etc/ssl/private/jwt_signing_key.pem</code>
+environment variable, or by setting <code>--jwt-key-file=/etc/ssl/private/jwt_signing_key.pem</code> on the commandline.</p>
+<p>Once it is running, you should be able to go to <code>http://localhost:4180/</code> in your browser,
+get authenticated by the login.gov integration server, and then get proxied on to your
+application running on <code>http://localhost:3000/</code>.  In a real deployment, you would secure
+your application with a firewall or something so that it was only accessible from the
+proxy, and you would use real hostnames everywhere.</p>
+<h4 id="skip-oidc-discovery">Skip OIDC discovery</h4>
+<p>Some providers do not support OIDC discovery via their issuer URL, so oauth2-proxy cannot simply grab the authorization, token and jwks URI endpoints from the provider's metadata.</p>
+<p>In this case, you can set the <code>--skip-oidc-discovery</code> option, and supply those required endpoints manually:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>    -provider oidc
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>    -client-id oauth2-proxy
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>    -client-secret proxy
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>    -redirect-url http://127.0.0.1:4180/oauth2/callback
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>    -oidc-issuer-url http://127.0.0.1:5556
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>    -skip-oidc-discovery
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>    -login-url http://127.0.0.1:5556/authorize
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>    -redeem-url http://127.0.0.1:5556/token
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>    -oidc-jwks-url http://127.0.0.1:5556/keys
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>    -cookie-secure=false
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>    -email-domain example.com
+</span></code></pre></div>
+<h3 id="nextcloud-provider">Nextcloud Provider</h3>
+<p>The Nextcloud provider allows you to authenticate against users in your
+Nextcloud instance.</p>
+<p>When you are using the Nextcloud provider, you must specify the urls via
+configuration, environment variable, or command line argument. Depending
+on whether your Nextcloud instance is using pretty urls your urls may be of the
+form <code>/index.php/apps/oauth2/*</code> or <code>/apps/oauth2/*</code>.</p>
+<p>Refer to the <a href="https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/oauth2.html">OAuth2
+documentation</a>
+to setup the client id and client secret. Your "Redirection URI" will be
+<code>https://internalapp.yourcompany.com/oauth2/callback</code>.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>    -provider nextcloud
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>    -client-id &lt;from nextcloud admin&gt;
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>    -client-secret &lt;from nextcloud admin&gt;
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>    -login-url=&quot;&lt;your nextcloud url&gt;/index.php/apps/oauth2/authorize&quot;
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>    -redeem-url=&quot;&lt;your nextcloud url&gt;/index.php/apps/oauth2/api/v1/token&quot;
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>    -validate-url=&quot;&lt;your nextcloud url&gt;/ocs/v2.php/cloud/user?format=json&quot;
+</span></code></pre></div>
+<p>Note: in <em>all</em> cases the validate-url will <em>not</em> have the <code>index.php</code>.</p>
+<h3 id="digitalocean-auth-provider">DigitalOcean Auth Provider</h3>
+<ol>
+<li><a href="https://cloud.digitalocean.com/account/api/applications">Create a new OAuth application</a><ul>
+<li>You can fill in the name, homepage, and description however you wish.</li>
+<li>In the "Application callback URL" field, enter: <code>https://oauth-proxy/oauth2/callback</code>, substituting <code>oauth2-proxy</code> with the actual hostname that oauth2-proxy is running on. The URL must match oauth2-proxy's configured redirect URL.</li>
+</ul>
+</li>
+<li>Note the Client ID and Client Secret.</li>
+</ol>
+<p>To use the provider, pass the following options:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>   --provider=digitalocean
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>   --client-id=&lt;Client ID&gt;
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>   --client-secret=&lt;Client Secret&gt;
+</span></code></pre></div>
+<p>Alternatively, set the equivalent options in the config file. The redirect URL defaults to <code>https://&lt;requested host header&gt;/oauth2/callback</code>. If you need to change it, you can use the <code>--redirect-url</code> command-line option.</p>
+<h3 id="bitbucket-auth-provider">Bitbucket Auth Provider</h3>
+<ol>
+<li><a href="https://confluence.atlassian.com/bitbucket/oauth-on-bitbucket-cloud-238027431.html">Add a new OAuth consumer</a><ul>
+<li>In "Callback URL" use <code>https://&lt;oauth2-proxy&gt;/oauth2/callback</code>, substituting <code>&lt;oauth2-proxy&gt;</code> with the actual hostname that oauth2-proxy is running on.</li>
+<li>In Permissions section select:<ul>
+<li>Account -&gt; Email</li>
+<li>Team membership -&gt; Read</li>
+<li>Repositories -&gt; Read</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Note the Client ID and Client Secret.</li>
+</ol>
+<p>To use the provider, pass the following options:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>   --provider=bitbucket
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>   --client-id=&lt;Client ID&gt;
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>   --client-secret=&lt;Client Secret&gt;
+</span></code></pre></div>
+<p>The default configuration allows everyone with Bitbucket account to authenticate. To restrict the access to the team members use additional configuration option: <code>--bitbucket-team=&lt;Team name&gt;</code>. To restrict the access to only these users who has access to one selected repository use <code>--bitbucket-repository=&lt;Repository name&gt;</code>.</p>
+<h3 id="gitea-auth-provider">Gitea Auth Provider</h3>
+<ol>
+<li>Create a new application: <code>https://&lt; your gitea host &gt;/user/settings/applications</code></li>
+<li>Under <code>Redirect URI</code> enter the correct URL i.e. <code>https://&lt;proxied host&gt;/oauth2/callback</code></li>
+<li>Note the Client ID and Client Secret.</li>
+<li>Pass the following options to the proxy:</li>
+</ol>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>    --provider=&quot;github&quot;
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>    --redirect-url=&quot;https://&lt;proxied host&gt;/oauth2/callback&quot;
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>    --provider-display-name=&quot;Gitea&quot;
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>    --client-id=&quot;&lt; client_id as generated by Gitea &gt;&quot;
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>    --client-secret=&quot;&lt; client_secret as generated by Gitea &gt;&quot;
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>    --login-url=&quot;https://&lt; your gitea host &gt;/login/oauth/authorize&quot;
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>    --redeem-url=&quot;https://&lt; your gitea host &gt;/login/oauth/access_token&quot;
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>    --validate-url=&quot;https://&lt; your gitea host &gt;/api/v1&quot;
+</span></code></pre></div>
+<h2 id="email-authentication">Email Authentication</h2>
+<p>To authorize by email domain use <code>--email-domain=yourcompany.com</code>. To authorize individual email addresses use <code>--authenticated-emails-file=/path/to/file</code> with one email per line. To authorize all email addresses use <code>--email-domain=*</code>.</p>
+<h2 id="adding-a-new-provider">Adding a new Provider</h2>
+<p>Follow the examples in the <a href="https://github.com/oauth2-proxy/oauth2-proxy/blob/master/providers/"><code>providers</code> package</a> to define a new
+<code>Provider</code> instance. Add a new <code>case</code> to
+<a href="https://github.com/oauth2-proxy/oauth2-proxy/blob/master/providers/providers.go"><code>providers.New()</code></a> to allow <code>oauth2-proxy</code> to use the
+new <code>Provider</code>.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 22, 2024</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../overview/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Overview
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../sessions/" class="md-footer__link md-footer__link--next" aria-label="Next: Session Storage">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Session Storage
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2012 - 2024 OAuth2 Proxy Authors
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/oauth2-proxy" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+    
+  
+
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="github" checked>
+          <span class="task-list-indicator"></span>
+          GitHub
+        </label>
+      </li>
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.path", "navigation.expand", "navigation.indexes", "navigation.footer", "content.code.copy", "search.suggest", "search.share"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>

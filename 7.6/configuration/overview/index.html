@@ -1,0 +1,3166 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="OAuth2 Proxy Authors">
+      
+      
+      
+        <link rel="prev" href="../alpha_config/">
+      
+      
+        <link rel="next" href="../providers/adfs/">
+      
+      
+      <link rel="icon" href="../../assets/logos/OAuth2_Proxy_icon.svg">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.29">
+    
+    
+      
+        <title>Overview - OAuth2 Proxy Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.76a95c52.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="grey" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#generating-a-cookie-secret" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+          <aside class="md-banner md-banner--warning">
+            <div class="md-banner__inner md-grid md-typeset">
+              
+  You're not viewing the latest version.
+  <a href="../../.."> 
+    <strong>Click here to go to latest.</strong>
+  </a>
+
+            </div>
+            <script>var el=document.querySelector("[data-md-component=outdated]"),outdated=__md_get("__outdated",sessionStorage);!0===outdated&&el&&(el.hidden=!1)</script>
+          </aside>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="OAuth2 Proxy Documentation" class="md-header__button md-logo" aria-label="OAuth2 Proxy Documentation" data-md-component="logo">
+      
+  <img src="../../assets/logos/OAuth2_Proxy_filled_icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OAuth2 Proxy Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="grey" data-md-color-accent="green"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="green"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/oauth2-proxy/oauth2-proxy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    oauth2-proxy/oauth2-proxy
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="OAuth2 Proxy Documentation" class="md-nav__button md-logo" aria-label="OAuth2 Proxy Documentation" data-md-component="logo">
+      
+  <img src="../../assets/logos/OAuth2_Proxy_filled_icon.svg" alt="logo">
+
+    </a>
+    OAuth2 Proxy Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/oauth2-proxy/oauth2-proxy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    oauth2-proxy/oauth2-proxy
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../behaviour/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Behaviour
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Configuration
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Configuration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#generating-a-cookie-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generating a Cookie Secret
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#config-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config File
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-line-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command Line Options
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upstreams-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upstreams Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment variables
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logging Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#auth-log-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auth Log Format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-log-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Log Format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standard-log-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Standard Log Format
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-for-use-with-the-nginx-auth_request-directive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring for use with the Nginx auth_request directive
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-for-use-with-the-traefik-v2-forwardauth-middleware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring for use with the Traefik (v2) ForwardAuth middleware
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring for use with the Traefik (v2) ForwardAuth middleware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#forwardauth-with-401-errors-middleware" class="md-nav__link">
+    <span class="md-ellipsis">
+      ForwardAuth with 401 errors middleware
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forwardauth-with-static-upstreams-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      ForwardAuth with static upstreams configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alpha_config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Alpha Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    OAuth Provider
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            OAuth Provider
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#generating-a-cookie-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generating a Cookie Secret
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#config-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config File
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-line-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command Line Options
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upstreams-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upstreams Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment variables
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logging Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#auth-log-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auth Log Format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-log-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Log Format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standard-log-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Standard Log Format
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-for-use-with-the-nginx-auth_request-directive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring for use with the Nginx auth_request directive
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-for-use-with-the-traefik-v2-forwardauth-middleware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring for use with the Traefik (v2) ForwardAuth middleware
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring for use with the Traefik (v2) ForwardAuth middleware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#forwardauth-with-401-errors-middleware" class="md-nav__link">
+    <span class="md-ellipsis">
+      ForwardAuth with 401 errors middleware
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forwardauth-with-static-upstreams-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      ForwardAuth with static upstreams configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/adfs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ADFS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/azure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Azure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/azure_ad/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Azure AD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/bitbucket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bitbucket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/digitalocean/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DigitalOcean
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/facebook/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Facebook
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/gitea/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gitea
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/gitlab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitLab
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/google/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Google
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/keycloak/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Keycloak
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/keycloak_oidc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Keycloak OIDC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/linkedin/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LinkedIn
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/login_gov/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Login.gov
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/nextcloud/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nextcloud
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/openid_connect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenID Connect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sessions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Session Storage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TLS Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Features
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Features
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/endpoints/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Endpoints
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Community
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Community
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../community/contribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contribution Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../community/security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Security
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#generating-a-cookie-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generating a Cookie Secret
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#config-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config File
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-line-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command Line Options
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upstreams-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upstreams Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment variables
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logging Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#auth-log-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auth Log Format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-log-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Log Format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standard-log-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Standard Log Format
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-for-use-with-the-nginx-auth_request-directive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring for use with the Nginx auth_request directive
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-for-use-with-the-traefik-v2-forwardauth-middleware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring for use with the Traefik (v2) ForwardAuth middleware
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring for use with the Traefik (v2) ForwardAuth middleware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#forwardauth-with-401-errors-middleware" class="md-nav__link">
+    <span class="md-ellipsis">
+      ForwardAuth with 401 errors middleware
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forwardauth-with-static-upstreams-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      ForwardAuth with static upstreams configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Overview</h1>
+
+<p><code>oauth2-proxy</code> can be configured via <a href="#command-line-options">command line options</a>, <a href="#environment-variables">environment variables</a> or <a href="#config-file">config file</a> (in decreasing order of precedence, i.e. command line options will overwrite environment variables and environment variables will overwrite configuration file settings).</p>
+<h3 id="generating-a-cookie-secret">Generating a Cookie Secret</h3>
+<p>To generate a strong cookie secret use one of the below commands:</p>
+<p>import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';</p>
+<p><Tabs defaultValue="python">
+  <TabItem value="python" label="Python"></p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;import os,base64; print(base64.urlsafe_b64encode(os.urandom(32)).decode())&#39;</span>
+</span></code></pre></div>
+<p></TabItem>
+  <TabItem value="bash" label="Bash"></p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/urandom<span class="w"> </span><span class="nv">bs</span><span class="o">=</span><span class="m">32</span><span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>-d<span class="w"> </span>--<span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>--<span class="w"> </span><span class="s1">&#39;+/&#39;</span><span class="w"> </span><span class="s1">&#39;-_&#39;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nb">echo</span>
+</span></code></pre></div>
+<p></TabItem>
+  <TabItem value="openssl" label="OpenSSL"></p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>openssl<span class="w"> </span>rand<span class="w"> </span>-base64<span class="w"> </span><span class="m">32</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>--<span class="w"> </span><span class="s1">&#39;+/&#39;</span><span class="w"> </span><span class="s1">&#39;-_&#39;</span>
+</span></code></pre></div>
+<p></TabItem>
+  <TabItem value="powershell" label="PowerShell"></p>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c"># Add System.Web assembly to session, just in case</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">Add-Type</span> <span class="n">-AssemblyName</span> <span class="n">System</span><span class="p">.</span><span class="n">Web</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="no">[Convert]</span><span class="p">::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="no">[System.Text.Encoding]</span><span class="p">::</span><span class="n">UTF8</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="no">[System.Web.Security.Membership]</span><span class="p">::</span><span class="n">GeneratePassword</span><span class="p">(</span><span class="n">32</span><span class="p">,</span><span class="n">4</span><span class="p">))).</span><span class="n">Replace</span><span class="p">(</span><span class="s2">&quot;+&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">).</span><span class="n">Replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p></TabItem>
+  <TabItem value="terraform" label="Terraform"></p>
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Valid 32 Byte Base64 URL encoding set that will decode to 24 []byte AES-192 secret</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;random_password&quot;</span><span class="w"> </span><span class="nv">&quot;cookie_secret&quot;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="na">length</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="m">32</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="na">override_special</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;-_&quot;</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">}</span>
+</span></code></pre></div>
+<p></TabItem>
+</Tabs></p>
+<h3 id="config-file">Config File</h3>
+<p>Every command line argument can be specified in a config file by replacing hyphens (-) with underscores (_). If the argument can be specified multiple times, the config option should be plural (trailing s).</p>
+<p>An example <a href="https://github.com/oauth2-proxy/oauth2-proxy/blob/master/contrib/oauth2-proxy.cfg.example">oauth2-proxy.cfg</a> config file is in the contrib directory. It can be used by specifying <code>--config=/etc/oauth2-proxy.cfg</code></p>
+<h3 id="command-line-options">Command Line Options</h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--acr-values</code></td>
+<td>string</td>
+<td>optional, see <a href="https://openid.net/specs/openid-connect-eap-acr-values-1_0.html#acrValues">docs</a></td>
+<td><code>""</code></td>
+</tr>
+<tr>
+<td><code>--allow-query-semicolons</code></td>
+<td>bool</td>
+<td>allow the use of semicolons in query args (<a href="https://github.com/golang/go/issues/25192">required for some legacy applications</a>)</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>--api-route</code></td>
+<td>string | list</td>
+<td>return HTTP 401 instead of redirecting to authentication server if token is not valid. Format: path_regex</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--approval-prompt</code></td>
+<td>string</td>
+<td>OAuth approval_prompt</td>
+<td><code>"force"</code></td>
+</tr>
+<tr>
+<td><code>--auth-logging</code></td>
+<td>bool</td>
+<td>Log authentication attempts</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>--auth-logging-format</code></td>
+<td>string</td>
+<td>Template for authentication log lines</td>
+<td>see <a href="#logging-configuration">Logging Configuration</a></td>
+</tr>
+<tr>
+<td><code>--authenticated-emails-file</code></td>
+<td>string</td>
+<td>authenticate against emails via file (one per line)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--azure-tenant</code></td>
+<td>string</td>
+<td>go to a tenant-specific or common (tenant-independent) endpoint.</td>
+<td><code>"common"</code></td>
+</tr>
+<tr>
+<td><code>--backend-logout-url</code></td>
+<td>string</td>
+<td>URL to perform backend logout, if you use <code>{id_token}</code> in the url it will be replaced by the actual <code>id_token</code> of the user session</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--basic-auth-password</code></td>
+<td>string</td>
+<td>the password to set when passing the HTTP Basic Auth header</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--client-id</code></td>
+<td>string</td>
+<td>the OAuth Client ID, e.g. <code>"123456.apps.googleusercontent.com"</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>--client-secret</code></td>
+<td>string</td>
+<td>the OAuth Client Secret</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--client-secret-file</code></td>
+<td>string</td>
+<td>the file with OAuth Client Secret</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--code-challenge-method</code></td>
+<td>string</td>
+<td>use PKCE code challenges with the specified method. Either 'plain' or 'S256' (recommended)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--config</code></td>
+<td>string</td>
+<td>path to config file</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--cookie-domain</code></td>
+<td>string | list</td>
+<td>Optional cookie domains to force cookies to (e.g. <code>.yourcompany.com</code>). The longest domain matching the request's host will be used (or the shortest cookie domain if there is no match).</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--cookie-expire</code></td>
+<td>duration</td>
+<td>expire timeframe for cookie. If set to 0, cookie becomes a session-cookie which will expire when the browser is closed.</td>
+<td>168h0m0s</td>
+</tr>
+<tr>
+<td><code>--cookie-httponly</code></td>
+<td>bool</td>
+<td>set HttpOnly cookie flag</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>--cookie-name</code></td>
+<td>string</td>
+<td>the name of the cookie that the oauth_proxy creates. Should be changed to use a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#cookie_prefixes">cookie prefix</a> (<code>__Host-</code> or <code>__Secure-</code>) if <code>--cookie-secure</code> is set.</td>
+<td><code>"_oauth2_proxy"</code></td>
+</tr>
+<tr>
+<td><code>--cookie-path</code></td>
+<td>string</td>
+<td>an optional cookie path to force cookies to (e.g. <code>/poc/</code>)</td>
+<td><code>"/"</code></td>
+</tr>
+<tr>
+<td><code>--cookie-refresh</code></td>
+<td>duration</td>
+<td>refresh the cookie after this duration; <code>0</code> to disable; not supported by all providers&nbsp;<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></td>
+<td></td>
+</tr>
+<tr>
+<td><code>--cookie-secret</code></td>
+<td>string</td>
+<td>the seed string for secure cookies (optionally base64 encoded)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--cookie-secure</code></td>
+<td>bool</td>
+<td>set <a href="https://owasp.org/www-community/controls/SecureFlag">secure (HTTPS only) cookie flag</a></td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>--cookie-samesite</code></td>
+<td>string</td>
+<td>set SameSite cookie attribute (<code>"lax"</code>, <code>"strict"</code>, <code>"none"</code>, or <code>""</code>).</td>
+<td><code>""</code></td>
+</tr>
+<tr>
+<td><code>--cookie-csrf-per-request</code></td>
+<td>bool</td>
+<td>Enable having different CSRF cookies per request, making it possible to have parallel requests.</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--cookie-csrf-expire</code></td>
+<td>duration</td>
+<td>expire timeframe for CSRF cookie</td>
+<td>15m</td>
+</tr>
+<tr>
+<td><code>--custom-templates-dir</code></td>
+<td>string</td>
+<td>path to custom html templates</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--custom-sign-in-logo</code></td>
+<td>string</td>
+<td>path or a URL to an custom image for the sign_in page logo. Use <code>"-"</code> to disable default logo.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--display-htpasswd-form</code></td>
+<td>bool</td>
+<td>display username / password login form if an htpasswd file is provided</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>--email-domain</code></td>
+<td>string | list</td>
+<td>authenticate emails with the specified domain (may be given multiple times). Use <code>*</code> to authenticate any email</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--errors-to-info-log</code></td>
+<td>bool</td>
+<td>redirects error-level logging to default log channel instead of stderr</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--extra-jwt-issuers</code></td>
+<td>string</td>
+<td>if <code>--skip-jwt-bearer-tokens</code> is set, a list of extra JWT <code>issuer=audience</code> (see a token's <code>iss</code>, <code>aud</code> fields) pairs (where the issuer URL has a <code>.well-known/openid-configuration</code> or a <code>.well-known/jwks.json</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--exclude-logging-path</code></td>
+<td>string</td>
+<td>comma separated list of paths to exclude from logging, e.g. <code>"/ping,/path2"</code></td>
+<td><code>""</code> (no paths excluded)</td>
+</tr>
+<tr>
+<td><code>--flush-interval</code></td>
+<td>duration</td>
+<td>period between flushing response buffers when streaming responses</td>
+<td><code>"1s"</code></td>
+</tr>
+<tr>
+<td><code>--force-https</code></td>
+<td>bool</td>
+<td>enforce https redirect</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>--force-json-errors</code></td>
+<td>bool</td>
+<td>force JSON errors instead of HTTP error pages or redirects</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>--banner</code></td>
+<td>string</td>
+<td>custom (html) banner string. Use <code>"-"</code> to disable default banner.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--footer</code></td>
+<td>string</td>
+<td>custom (html) footer string. Use <code>"-"</code> to disable default footer.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--github-org</code></td>
+<td>string</td>
+<td>restrict logins to members of this organisation</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--github-team</code></td>
+<td>string</td>
+<td>restrict logins to members of any of these teams (slug), separated by a comma</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--github-repo</code></td>
+<td>string</td>
+<td>restrict logins to collaborators of this repository formatted as <code>orgname/repo</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>--github-token</code></td>
+<td>string</td>
+<td>the token to use when verifying repository collaborators (must have push access to the repository)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--github-user</code></td>
+<td>string | list</td>
+<td>To allow users to login by username even if they do not belong to the specified org and team or collaborators</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--gitlab-group</code></td>
+<td>string | list</td>
+<td>restrict logins to members of any of these groups (slug), separated by a comma</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--gitlab-projects</code></td>
+<td>string | list</td>
+<td>restrict logins to members of any of these projects (may be given multiple times) formatted as <code>orgname/repo=accesslevel</code>. Access level should be a value matching <a href="https://docs.gitlab.com/ee/api/members.html#valid-access-levels">Gitlab access levels</a>, defaulted to 20 if absent</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--google-admin-email</code></td>
+<td>string</td>
+<td>the google admin to impersonate for api calls</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--google-group</code></td>
+<td>string</td>
+<td>restrict logins to members of this google group (may be given multiple times).</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--google-service-account-json</code></td>
+<td>string</td>
+<td>the path to the service account json credentials</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--google-use-application-default-credentials</code></td>
+<td>bool</td>
+<td>use application default credentials instead of service account json (i.e. GKE Workload Identity)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--google-target-principal</code></td>
+<td>bool</td>
+<td>the target principal to impersonate when using ADC</td>
+<td>defaults to the service account configured for ADC</td>
+</tr>
+<tr>
+<td><code>--htpasswd-file</code></td>
+<td>string</td>
+<td>additionally authenticate against a htpasswd file. Entries must be created with <code>htpasswd -B</code> for bcrypt encryption</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--htpasswd-user-group</code></td>
+<td>string | list</td>
+<td>the groups to be set on sessions for htpasswd users</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--http-address</code></td>
+<td>string</td>
+<td><code>[http://]&lt;addr&gt;:&lt;port&gt;</code> or <code>unix://&lt;path&gt;</code> to listen on for HTTP clients. Square brackets are required for ipv6 address, e.g. <code>http://[::1]:4180</code></td>
+<td><code>"127.0.0.1:4180"</code></td>
+</tr>
+<tr>
+<td><code>--https-address</code></td>
+<td>string</td>
+<td><code>[https://]&lt;addr&gt;:&lt;port&gt;</code> to listen on for HTTPS clients. Square brackets are required for ipv6 address, e.g. <code>https://[::1]:443</code></td>
+<td><code>":443"</code></td>
+</tr>
+<tr>
+<td><code>--logging-compress</code></td>
+<td>bool</td>
+<td>Should rotated log files be compressed using gzip</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--logging-filename</code></td>
+<td>string</td>
+<td>File to log requests to, empty for <code>stdout</code></td>
+<td><code>""</code> (stdout)</td>
+</tr>
+<tr>
+<td><code>--logging-local-time</code></td>
+<td>bool</td>
+<td>Use local time in log files and backup filenames instead of UTC</td>
+<td>true (local time)</td>
+</tr>
+<tr>
+<td><code>--logging-max-age</code></td>
+<td>int</td>
+<td>Maximum number of days to retain old log files</td>
+<td>7</td>
+</tr>
+<tr>
+<td><code>--logging-max-backups</code></td>
+<td>int</td>
+<td>Maximum number of old log files to retain; 0 to disable</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>--logging-max-size</code></td>
+<td>int</td>
+<td>Maximum size in megabytes of the log file before rotation</td>
+<td>100</td>
+</tr>
+<tr>
+<td><code>--jwt-key</code></td>
+<td>string</td>
+<td>private key in PEM format used to sign JWT, so that you can say something like <code>--jwt-key="${OAUTH2_PROXY_JWT_KEY}"</code>: required by login.gov</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--jwt-key-file</code></td>
+<td>string</td>
+<td>path to the private key file in PEM format used to sign the JWT so that you can say something like <code>--jwt-key-file=/etc/ssl/private/jwt_signing_key.pem</code>: required by login.gov</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--login-url</code></td>
+<td>string</td>
+<td>Authentication endpoint</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--insecure-oidc-allow-unverified-email</code></td>
+<td>bool</td>
+<td>don't fail if an email address in an id_token is not verified</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--insecure-oidc-skip-issuer-verification</code></td>
+<td>bool</td>
+<td>allow the OIDC issuer URL to differ from the expected (currently required for Azure multi-tenant compatibility)</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--insecure-oidc-skip-nonce</code></td>
+<td>bool</td>
+<td>skip verifying the OIDC ID Token's nonce claim</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>--oidc-issuer-url</code></td>
+<td>string</td>
+<td>the OpenID Connect issuer URL, e.g. <code>"https://accounts.google.com"</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>--oidc-jwks-url</code></td>
+<td>string</td>
+<td>OIDC JWKS URI for token verification; required if OIDC discovery is disabled</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--oidc-email-claim</code></td>
+<td>string</td>
+<td>which OIDC claim contains the user's email</td>
+<td><code>"email"</code></td>
+</tr>
+<tr>
+<td><code>--oidc-groups-claim</code></td>
+<td>string</td>
+<td>which OIDC claim contains the user groups</td>
+<td><code>"groups"</code></td>
+</tr>
+<tr>
+<td><code>--oidc-audience-claim</code></td>
+<td>string</td>
+<td>which OIDC claim contains the audience</td>
+<td><code>"aud"</code></td>
+</tr>
+<tr>
+<td><code>--oidc-extra-audience</code></td>
+<td>string | list</td>
+<td>additional audiences which are allowed to pass verification</td>
+<td><code>"[]"</code></td>
+</tr>
+<tr>
+<td><code>--pass-access-token</code></td>
+<td>bool</td>
+<td>pass OAuth access_token to upstream via X-Forwarded-Access-Token header. When used with <code>--set-xauthrequest</code> this adds the X-Auth-Request-Access-Token header to the response</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--pass-authorization-header</code></td>
+<td>bool</td>
+<td>pass OIDC IDToken to upstream via Authorization Bearer header</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--pass-basic-auth</code></td>
+<td>bool</td>
+<td>pass HTTP Basic Auth, X-Forwarded-User, X-Forwarded-Email and X-Forwarded-Preferred-Username information to upstream</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>--prefer-email-to-user</code></td>
+<td>bool</td>
+<td>Prefer to use the Email address as the Username when passing information to upstream. Will only use Username if Email is unavailable, e.g. htaccess authentication. Used in conjunction with <code>--pass-basic-auth</code> and <code>--pass-user-headers</code></td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--pass-host-header</code></td>
+<td>bool</td>
+<td>pass the request Host Header to upstream</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>--pass-user-headers</code></td>
+<td>bool</td>
+<td>pass X-Forwarded-User, X-Forwarded-Groups, X-Forwarded-Email and X-Forwarded-Preferred-Username information to upstream</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>--profile-url</code></td>
+<td>string</td>
+<td>Profile access endpoint</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--skip-claims-from-profile-url</code></td>
+<td>bool</td>
+<td>skip request to Profile URL for resolving claims not present in id_token</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--prompt</code></td>
+<td>string</td>
+<td><a href="https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest">OIDC prompt</a>; if present, <code>approval-prompt</code> is ignored</td>
+<td><code>""</code></td>
+</tr>
+<tr>
+<td><code>--provider</code></td>
+<td>string</td>
+<td>OAuth provider</td>
+<td>google</td>
+</tr>
+<tr>
+<td><code>--provider-ca-file</code></td>
+<td>string | list</td>
+<td>Paths to CA certificates that should be used when connecting to the provider. If not specified, the default Go trust sources are used instead.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--use-system-trust-store</code></td>
+<td>bool</td>
+<td>Determines if <code>provider-ca-file</code> files and the system trust store are used. If set to true, your custom CA files and the system trust store are used otherwise only your custom CA files.</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--provider-display-name</code></td>
+<td>string</td>
+<td>Override the provider's name with the given string; used for the sign-in page</td>
+<td>(depends on provider)</td>
+</tr>
+<tr>
+<td><code>--ping-path</code></td>
+<td>string</td>
+<td>the ping endpoint that can be used for basic health checks</td>
+<td><code>"/ping"</code></td>
+</tr>
+<tr>
+<td><code>--ping-user-agent</code></td>
+<td>string</td>
+<td>a User-Agent that can be used for basic health checks</td>
+<td><code>""</code> (don't check user agent)</td>
+</tr>
+<tr>
+<td><code>--ready-path</code></td>
+<td>string</td>
+<td>the ready endpoint that can be used for deep health checks</td>
+<td><code>"/ready"</code></td>
+</tr>
+<tr>
+<td><code>--metrics-address</code></td>
+<td>string</td>
+<td>the address prometheus metrics will be scraped from</td>
+<td><code>""</code></td>
+</tr>
+<tr>
+<td><code>--proxy-prefix</code></td>
+<td>string</td>
+<td>the url root path that this proxy should be nested under (e.g. /<code>&lt;oauth2&gt;/sign_in</code>)</td>
+<td><code>"/oauth2"</code></td>
+</tr>
+<tr>
+<td><code>--proxy-websockets</code></td>
+<td>bool</td>
+<td>enables WebSocket proxying</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>--pubjwk-url</code></td>
+<td>string</td>
+<td>JWK pubkey access endpoint: required by login.gov</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--real-client-ip-header</code></td>
+<td>string</td>
+<td>Header used to determine the real IP of the client, requires <code>--reverse-proxy</code> to be set (one of: X-Forwarded-For, X-Real-IP, or X-ProxyUser-IP)</td>
+<td>X-Real-IP</td>
+</tr>
+<tr>
+<td><code>--redeem-url</code></td>
+<td>string</td>
+<td>Token redemption endpoint</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--redirect-url</code></td>
+<td>string</td>
+<td>the OAuth Redirect URL, e.g. <code>"https://internalapp.yourcompany.com/oauth2/callback"</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>--relative-redirect-url</code></td>
+<td>bool</td>
+<td>allow relative OAuth Redirect URL.`</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--redis-cluster-connection-urls</code></td>
+<td>string | list</td>
+<td>List of Redis cluster connection URLs (e.g. <code>redis://HOST[:PORT]</code>). Used in conjunction with <code>--redis-use-cluster</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>--redis-connection-url</code></td>
+<td>string</td>
+<td>URL of redis server for redis session storage (e.g. <code>redis://HOST[:PORT]</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--redis-insecure-skip-tls-verify</code></td>
+<td>bool</td>
+<td>skip TLS verification when connecting to Redis</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--redis-password</code></td>
+<td>string</td>
+<td>Redis password. Applicable for all Redis configurations. Will override any password set in <code>--redis-connection-url</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>--redis-sentinel-password</code></td>
+<td>string</td>
+<td>Redis sentinel password. Used only for sentinel connection; any redis node passwords need to use <code>--redis-password</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>--redis-sentinel-master-name</code></td>
+<td>string</td>
+<td>Redis sentinel master name. Used in conjunction with <code>--redis-use-sentinel</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>--redis-sentinel-connection-urls</code></td>
+<td>string | list</td>
+<td>List of Redis sentinel connection URLs (e.g. <code>redis://HOST[:PORT]</code>). Used in conjunction with <code>--redis-use-sentinel</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>--redis-use-cluster</code></td>
+<td>bool</td>
+<td>Connect to redis cluster. Must set <code>--redis-cluster-connection-urls</code> to use this feature</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--redis-use-sentinel</code></td>
+<td>bool</td>
+<td>Connect to redis via sentinels. Must set <code>--redis-sentinel-master-name</code> and <code>--redis-sentinel-connection-urls</code> to use this feature</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--redis-connection-idle-timeout</code></td>
+<td>int</td>
+<td>Redis connection idle timeout seconds. If Redis <a href="https://redis.io/docs/reference/clients/#client-timeouts">timeout</a> option is set to non-zero, the <code>--redis-connection-idle-timeout</code> must be less than Redis timeout option. Example: if either redis.conf includes <code>timeout 15</code> or using <code>CONFIG SET timeout 15</code> the <code>--redis-connection-idle-timeout</code> must be at least <code>--redis-connection-idle-timeout=14</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>--request-id-header</code></td>
+<td>string</td>
+<td>Request header to use as the request ID in logging</td>
+<td>X-Request-Id</td>
+</tr>
+<tr>
+<td><code>--request-logging</code></td>
+<td>bool</td>
+<td>Log requests</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>--request-logging-format</code></td>
+<td>string</td>
+<td>Template for request log lines</td>
+<td>see <a href="#logging-configuration">Logging Configuration</a></td>
+</tr>
+<tr>
+<td><code>--resource</code></td>
+<td>string</td>
+<td>The resource that is protected (Azure AD only)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--reverse-proxy</code></td>
+<td>bool</td>
+<td>are we running behind a reverse proxy, controls whether headers like X-Real-IP are accepted and allows X-Forwarded-{Proto,Host,Uri} headers to be used on redirect selection</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--scope</code></td>
+<td>string</td>
+<td>OAuth scope specification</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--session-cookie-minimal</code></td>
+<td>bool</td>
+<td>strip OAuth tokens from cookie session stores if they aren't needed (cookie session store only)</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--session-store-type</code></td>
+<td>string</td>
+<td><a href="../sessions/">Session data storage backend</a>; redis or cookie</td>
+<td>cookie</td>
+</tr>
+<tr>
+<td><code>--set-xauthrequest</code></td>
+<td>bool</td>
+<td>set X-Auth-Request-User, X-Auth-Request-Groups, X-Auth-Request-Email and X-Auth-Request-Preferred-Username response headers (useful in Nginx auth_request mode). When used with <code>--pass-access-token</code>, X-Auth-Request-Access-Token is added to response headers.</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--set-authorization-header</code></td>
+<td>bool</td>
+<td>set Authorization Bearer response header (useful in Nginx auth_request mode)</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--set-basic-auth</code></td>
+<td>bool</td>
+<td>set HTTP Basic Auth information in response (useful in Nginx auth_request mode)</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--show-debug-on-error</code></td>
+<td>bool</td>
+<td>show detailed error information on error pages (WARNING: this may contain sensitive information - do not use in production)</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--signature-key</code></td>
+<td>string</td>
+<td>GAP-Signature request signature key (algorithm:secretkey)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--silence-ping-logging</code></td>
+<td>bool</td>
+<td>disable logging of requests to ping &amp; ready endpoints</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--skip-auth-preflight</code></td>
+<td>bool</td>
+<td>will skip authentication for OPTIONS requests</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--skip-auth-regex</code></td>
+<td>string | list</td>
+<td>(DEPRECATED for <code>--skip-auth-route</code>) bypass authentication for requests paths that match (may be given multiple times)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--skip-auth-route</code></td>
+<td>string | list</td>
+<td>bypass authentication for requests that match the method &amp; path. Format: method=path_regex OR method!=path_regex. For all methods: path_regex OR !=path_regex</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--skip-auth-strip-headers</code></td>
+<td>bool</td>
+<td>strips <code>X-Forwarded-*</code> style authentication headers &amp; <code>Authorization</code> header if they would be set by oauth2-proxy</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>--skip-jwt-bearer-tokens</code></td>
+<td>bool</td>
+<td>will skip requests that have verified JWT bearer tokens (the token must have <a href="https://en.wikipedia.org/wiki/JSON_Web_Token#Standard_fields"><code>aud</code></a> that matches this client id or one of the extras from <code>extra-jwt-issuers</code>)</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--skip-oidc-discovery</code></td>
+<td>bool</td>
+<td>bypass OIDC endpoint discovery. <code>--login-url</code>, <code>--redeem-url</code> and <code>--oidc-jwks-url</code> must be configured in this case</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--skip-provider-button</code></td>
+<td>bool</td>
+<td>will skip sign-in-page to directly reach the next step: oauth/start</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--ssl-insecure-skip-verify</code></td>
+<td>bool</td>
+<td>skip validation of certificates presented when using HTTPS providers</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--ssl-upstream-insecure-skip-verify</code></td>
+<td>bool</td>
+<td>skip validation of certificates presented when using HTTPS upstreams</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--standard-logging</code></td>
+<td>bool</td>
+<td>Log standard runtime information</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>--standard-logging-format</code></td>
+<td>string</td>
+<td>Template for standard log lines</td>
+<td>see <a href="#logging-configuration">Logging Configuration</a></td>
+</tr>
+<tr>
+<td><code>--tls-cert-file</code></td>
+<td>string</td>
+<td>path to certificate file</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--tls-cipher-suite</code></td>
+<td>string | list</td>
+<td>Restricts TLS cipher suites used by server to those listed (e.g. TLS_RSA_WITH_RC4_128_SHA) (may be given multiple times). If not specified, the default Go safe cipher list is used. List of valid cipher suites can be found in the <a href="https://pkg.go.dev/crypto/tls#pkg-constants">crypto/tls documentation</a>.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--tls-key-file</code></td>
+<td>string</td>
+<td>path to private key file</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--tls-min-version</code></td>
+<td>string</td>
+<td>minimum TLS version that is acceptable, either <code>"TLS1.2"</code> or <code>"TLS1.3"</code></td>
+<td><code>"TLS1.2"</code></td>
+</tr>
+<tr>
+<td><code>--upstream</code></td>
+<td>string | list</td>
+<td>the http url(s) of the upstream endpoint, file:// paths for static files or <code>static://&lt;status_code&gt;</code> for static response. Routing is based on the path</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--upstream-timeout</code></td>
+<td>duration</td>
+<td>maximum amount of time the server will wait for a response from the upstream</td>
+<td>30s</td>
+</tr>
+<tr>
+<td><code>--allowed-group</code></td>
+<td>string | list</td>
+<td>restrict logins to members of this group (may be given multiple times)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--allowed-role</code></td>
+<td>string | list</td>
+<td>restrict logins to users with this role (may be given multiple times). Only works with the keycloak-oidc provider.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--validate-url</code></td>
+<td>string</td>
+<td>Access token validation endpoint</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--version</code></td>
+<td>n/a</td>
+<td>print version string</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--whitelist-domain</code></td>
+<td>string | list</td>
+<td>allowed domains for redirection after authentication. Prefix domain with a <code>.</code> or a <code>*.</code> to allow subdomains (e.g. <code>.example.com</code>, <code>*.example.com</code>)&nbsp;<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></td>
+<td></td>
+</tr>
+<tr>
+<td><code>--trusted-ip</code></td>
+<td>string | list</td>
+<td>list of IPs or CIDR ranges to allow to bypass authentication (may be given multiple times). When combined with <code>--reverse-proxy</code> and optionally <code>--real-client-ip-header</code> this will evaluate the trust of the IP stored in an HTTP header by a reverse proxy rather than the layer-3/4 remote address. WARNING: trusting IPs has inherent security flaws, especially when obtaining the IP address from an HTTP header (reverse-proxy mode). Use this option only if you understand the risks and how to manage them.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--encode-state</code></td>
+<td>bool</td>
+<td>encode the state parameter as UrlEncodedBase64</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<p>See below for provider specific options</p>
+<h3 id="upstreams-configuration">Upstreams Configuration</h3>
+<p><code>oauth2-proxy</code> supports having multiple upstreams, and has the option to pass requests on to HTTP(S) servers, unix socket or serve static files from the file system.</p>
+<p>HTTP and HTTPS upstreams are configured by providing a URL such as <code>http://127.0.0.1:8080/</code> for the upstream parameter. . This will forward all authenticated requests to the upstream server. If you instead provide <code>http://127.0.0.1:8080/some/path/</code> then it will only be requests that start with <code>/some/path/</code> which are forwarded to the upstream.</p>
+<p>Unix socket upstreams are configured as <code>unix:///path/to/unix.sock</code>.</p>
+<p>Static file paths are configured as a file:// URL. <code>file:///var/www/static/</code> will serve the files from that directory at <code>http://[oauth2-proxy url]/var/www/static/</code>, which may not be what you want. You can provide the path to where the files should be available by adding a fragment to the configured URL. The value of the fragment will then be used to specify which path the files are available at, e.g. <code>file:///var/www/static/#/static/</code> will make <code>/var/www/static/</code> available at <code>http://[oauth2-proxy url]/static/</code>.</p>
+<p>Multiple upstreams can either be configured by supplying a comma separated list to the <code>--upstream</code> parameter, supplying the parameter multiple times or providing a list in the <a href="#config-file">config file</a>. When multiple upstreams are used routing to them will be based on the path they are set up with.</p>
+<h3 id="environment-variables">Environment variables</h3>
+<p>Every command line argument can be specified as an environment variable by
+prefixing it with <code>OAUTH2_PROXY_</code>, capitalising it, and replacing hyphens (<code>-</code>)
+with underscores (<code>_</code>). If the argument can be specified multiple times, the
+environment variable should be plural (trailing <code>S</code>).</p>
+<p>This is particularly useful for storing secrets outside a configuration file
+or the command line.</p>
+<p>For example, the <code>--cookie-secret</code> flag becomes <code>OAUTH2_PROXY_COOKIE_SECRET</code>,
+and the <code>--email-domain</code> flag becomes <code>OAUTH2_PROXY_EMAIL_DOMAINS</code>.</p>
+<h2 id="logging-configuration">Logging Configuration</h2>
+<p>By default, OAuth2 Proxy logs all output to stdout. Logging can be configured to output to a rotating log file using the <code>--logging-filename</code> command.</p>
+<p>If logging to a file you can also configure the maximum file size (<code>--logging-max-size</code>), age (<code>--logging-max-age</code>), max backup logs (<code>--logging-max-backups</code>), and if backup logs should be compressed (<code>--logging-compress</code>).</p>
+<p>There are three different types of logging: standard, authentication, and HTTP requests. These can each be enabled or disabled with <code>--standard-logging</code>, <code>--auth-logging</code>, and <code>--request-logging</code>.</p>
+<p>Each type of logging has its own configurable format and variables. By default, these formats are similar to the Apache Combined Log.</p>
+<p>Logging of requests to the <code>/ping</code> endpoint (or using <code>--ping-user-agent</code>) and the <code>/ready</code> endpoint can be disabled with <code>--silence-ping-logging</code> reducing log volume.</p>
+<h3 id="auth-log-format">Auth Log Format</h3>
+<p>Authentication logs are logs which are guaranteed to contain a username or email address of a user attempting to authenticate. These logs are output by default in the below format:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>&lt;REMOTE_ADDRESS&gt; - &lt;REQUEST ID&gt; - &lt;user@domain.com&gt; [19/Mar/2015:17:20:19 -0400] [&lt;STATUS&gt;] &lt;MESSAGE&gt;
+</span></code></pre></div>
+<p>The status block will contain one of the below strings:</p>
+<ul>
+<li><code>AuthSuccess</code> If a user has authenticated successfully by any method</li>
+<li><code>AuthFailure</code> If the user failed to authenticate explicitly</li>
+<li><code>AuthError</code> If there was an unexpected error during authentication</li>
+</ul>
+<p>If you require a different format than that, you can configure it with the <code>--auth-logging-format</code> flag.
+The default format is configured as follows:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>{{.Client}} - {{.RequestID}} - {{.Username}} [{{.Timestamp}}] [{{.Status}}] {{.Message}}
+</span></code></pre></div>
+<p>Available variables for auth logging:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Client</td>
+<td>74.125.224.72</td>
+<td>The client/remote IP address. Will use the X-Real-IP header it if exists &amp; reverse-proxy is set to true.</td>
+</tr>
+<tr>
+<td>Host</td>
+<td>domain.com</td>
+<td>The value of the Host header.</td>
+</tr>
+<tr>
+<td>Message</td>
+<td>Authenticated via OAuth2</td>
+<td>The details of the auth attempt.</td>
+</tr>
+<tr>
+<td>Protocol</td>
+<td>HTTP/1.0</td>
+<td>The request protocol.</td>
+</tr>
+<tr>
+<td>RequestID</td>
+<td>00010203-0405-4607-8809-0a0b0c0d0e0f</td>
+<td>The request ID pulled from the <code>--request-id-header</code>. Random UUID if empty</td>
+</tr>
+<tr>
+<td>RequestMethod</td>
+<td>GET</td>
+<td>The request method.</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>19/Mar/2015:17:20:19 -0400</td>
+<td>The date and time of the logging event.</td>
+</tr>
+<tr>
+<td>UserAgent</td>
+<td>-</td>
+<td>The full user agent as reported by the requesting client.</td>
+</tr>
+<tr>
+<td>Username</td>
+<td>username@email.com</td>
+<td>The email or username of the auth request.</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>AuthSuccess</td>
+<td>The status of the auth request. See above for details.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="request-log-format">Request Log Format</h3>
+<p>HTTP request logs will output by default in the below format:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>&lt;REMOTE_ADDRESS&gt; - &lt;REQUEST ID&gt; - &lt;user@domain.com&gt; [19/Mar/2015:17:20:19 -0400] &lt;HOST_HEADER&gt; GET &lt;UPSTREAM_HOST&gt; &quot;/path/&quot; HTTP/1.1 &quot;&lt;USER_AGENT&gt;&quot; &lt;RESPONSE_CODE&gt; &lt;RESPONSE_BYTES&gt; &lt;REQUEST_DURATION&gt;
+</span></code></pre></div>
+<p>If you require a different format than that, you can configure it with the <code>--request-logging-format</code> flag.
+The default format is configured as follows:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>{{.Client}} - {{.RequestID}} - {{.Username}} [{{.Timestamp}}] {{.Host}} {{.RequestMethod}} {{.Upstream}} {{.RequestURI}} {{.Protocol}} {{.UserAgent}} {{.StatusCode}} {{.ResponseSize}} {{.RequestDuration}}
+</span></code></pre></div>
+<p>Available variables for request logging:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Client</td>
+<td>74.125.224.72</td>
+<td>The client/remote IP address. Will use the X-Real-IP header it if exists &amp; reverse-proxy is set to true.</td>
+</tr>
+<tr>
+<td>Host</td>
+<td>domain.com</td>
+<td>The value of the Host header.</td>
+</tr>
+<tr>
+<td>Protocol</td>
+<td>HTTP/1.0</td>
+<td>The request protocol.</td>
+</tr>
+<tr>
+<td>RequestDuration</td>
+<td>0.001</td>
+<td>The time in seconds that a request took to process.</td>
+</tr>
+<tr>
+<td>RequestID</td>
+<td>00010203-0405-4607-8809-0a0b0c0d0e0f</td>
+<td>The request ID pulled from the <code>--request-id-header</code>. Random UUID if empty</td>
+</tr>
+<tr>
+<td>RequestMethod</td>
+<td>GET</td>
+<td>The request method.</td>
+</tr>
+<tr>
+<td>RequestURI</td>
+<td>"/oauth2/auth"</td>
+<td>The URI path of the request.</td>
+</tr>
+<tr>
+<td>ResponseSize</td>
+<td>12</td>
+<td>The size in bytes of the response.</td>
+</tr>
+<tr>
+<td>StatusCode</td>
+<td>200</td>
+<td>The HTTP status code of the response.</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>19/Mar/2015:17:20:19 -0400</td>
+<td>The date and time of the logging event.</td>
+</tr>
+<tr>
+<td>Upstream</td>
+<td>-</td>
+<td>The upstream data of the HTTP request.</td>
+</tr>
+<tr>
+<td>UserAgent</td>
+<td>-</td>
+<td>The full user agent as reported by the requesting client.</td>
+</tr>
+<tr>
+<td>Username</td>
+<td>username@email.com</td>
+<td>The email or username of the auth request.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="standard-log-format">Standard Log Format</h3>
+<p>All other logging that is not covered by the above two types of logging will be output in this standard logging format. This includes configuration information at startup and errors that occur outside of a session. The default format is below:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>[19/Mar/2015:17:20:19 -0400] [main.go:40] &lt;MESSAGE&gt;
+</span></code></pre></div>
+<p>If you require a different format than that, you can configure it with the <code>--standard-logging-format</code> flag. The default format is configured as follows:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>[{{.Timestamp}}] [{{.File}}] {{.Message}}
+</span></code></pre></div>
+<p>Available variables for standard logging:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Timestamp</td>
+<td>19/Mar/2015:17:20:19 -0400</td>
+<td>The date and time of the logging event.</td>
+</tr>
+<tr>
+<td>File</td>
+<td>main.go:40</td>
+<td>The file and line number of the logging statement.</td>
+</tr>
+<tr>
+<td>Message</td>
+<td>HTTP: listening on 127.0.0.1:4180</td>
+<td>The details of the log statement.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="configuring-for-use-with-the-nginx-auth_request-directive">Configuring for use with the Nginx <code>auth_request</code> directive</h2>
+<p><strong>This option requires <code>--reverse-proxy</code> option to be set.</strong></p>
+<p>The <a href="http://nginx.org/en/docs/http/ngx_http_auth_request_module.html">Nginx <code>auth_request</code> directive</a> allows Nginx to authenticate requests via the oauth2-proxy's <code>/auth</code> endpoint, which only returns a 202 Accepted response or a 401 Unauthorized response without proxying the request through. For example:</p>
+<div class="language-nginx highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">server</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span><span class="kn">listen</span><span class="w"> </span><span class="mi">443</span><span class="w"> </span><span class="s">ssl</span><span class="p">;</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span><span class="kn">server_name</span><span class="w"> </span><span class="s">...</span><span class="p">;</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span><span class="kn">include</span><span class="w"> </span><span class="s">ssl/ssl.conf</span><span class="p">;</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">  </span><span class="kn">location</span><span class="w"> </span><span class="s">/oauth2/</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">    </span><span class="kn">proxy_pass</span><span class="w">       </span><span class="s">http://127.0.0.1:4180</span><span class="p">;</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">    </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w">                    </span><span class="nv">$host</span><span class="p">;</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">    </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w">               </span><span class="nv">$remote_addr</span><span class="p">;</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">    </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Auth-Request-Redirect</span><span class="w"> </span><span class="nv">$request_uri</span><span class="p">;</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">    </span><span class="c1"># or, if you are handling multiple domains:</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="w">    </span><span class="c1"># proxy_set_header X-Auth-Request-Redirect $scheme://$host$request_uri;</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="w">  </span><span class="kn">location</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">/oauth2/auth</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="w">    </span><span class="kn">proxy_pass</span><span class="w">       </span><span class="s">http://127.0.0.1:4180</span><span class="p">;</span>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="w">    </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w">             </span><span class="nv">$host</span><span class="p">;</span>
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="w">    </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w">        </span><span class="nv">$remote_addr</span><span class="p">;</span>
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="w">    </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Uri</span><span class="w">  </span><span class="nv">$request_uri</span><span class="p">;</span>
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="w">    </span><span class="c1"># nginx auth_request includes headers but not body</span>
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="w">    </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Content-Length</span><span class="w">   </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="w">    </span><span class="kn">proxy_pass_request_body</span><span class="w">           </span><span class="no">off</span><span class="p">;</span>
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>
+</span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="w">  </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-25"><a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a><span class="w">    </span><span class="kn">auth_request</span><span class="w"> </span><span class="s">/oauth2/auth</span><span class="p">;</span>
+</span><span id="__span-11-26"><a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a><span class="w">    </span><span class="kn">error_page</span><span class="w"> </span><span class="mi">401</span><span class="w"> </span><span class="p">=</span><span class="mi">403</span><span class="w"> </span><span class="s">/oauth2/sign_in</span><span class="p">;</span>
+</span><span id="__span-11-27"><a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a>
+</span><span id="__span-11-28"><a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a><span class="w">    </span><span class="c1"># pass information via X-User and X-Email headers to backend,</span>
+</span><span id="__span-11-29"><a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a><span class="w">    </span><span class="c1"># requires running with --set-xauthrequest flag</span>
+</span><span id="__span-11-30"><a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a><span class="w">    </span><span class="kn">auth_request_set</span><span class="w"> </span><span class="nv">$user</span><span class="w">   </span><span class="nv">$upstream_http_x_auth_request_user</span><span class="p">;</span>
+</span><span id="__span-11-31"><a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a><span class="w">    </span><span class="kn">auth_request_set</span><span class="w"> </span><span class="nv">$email</span><span class="w">  </span><span class="nv">$upstream_http_x_auth_request_email</span><span class="p">;</span>
+</span><span id="__span-11-32"><a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a><span class="w">    </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-User</span><span class="w">  </span><span class="nv">$user</span><span class="p">;</span>
+</span><span id="__span-11-33"><a id="__codelineno-11-33" name="__codelineno-11-33" href="#__codelineno-11-33"></a><span class="w">    </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Email</span><span class="w"> </span><span class="nv">$email</span><span class="p">;</span>
+</span><span id="__span-11-34"><a id="__codelineno-11-34" name="__codelineno-11-34" href="#__codelineno-11-34"></a>
+</span><span id="__span-11-35"><a id="__codelineno-11-35" name="__codelineno-11-35" href="#__codelineno-11-35"></a><span class="w">    </span><span class="c1"># if you enabled --pass-access-token, this will pass the token to the backend</span>
+</span><span id="__span-11-36"><a id="__codelineno-11-36" name="__codelineno-11-36" href="#__codelineno-11-36"></a><span class="w">    </span><span class="kn">auth_request_set</span><span class="w"> </span><span class="nv">$token</span><span class="w">  </span><span class="nv">$upstream_http_x_auth_request_access_token</span><span class="p">;</span>
+</span><span id="__span-11-37"><a id="__codelineno-11-37" name="__codelineno-11-37" href="#__codelineno-11-37"></a><span class="w">    </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Access-Token</span><span class="w"> </span><span class="nv">$token</span><span class="p">;</span>
+</span><span id="__span-11-38"><a id="__codelineno-11-38" name="__codelineno-11-38" href="#__codelineno-11-38"></a>
+</span><span id="__span-11-39"><a id="__codelineno-11-39" name="__codelineno-11-39" href="#__codelineno-11-39"></a><span class="w">    </span><span class="c1"># if you enabled --cookie-refresh, this is needed for it to work with auth_request</span>
+</span><span id="__span-11-40"><a id="__codelineno-11-40" name="__codelineno-11-40" href="#__codelineno-11-40"></a><span class="w">    </span><span class="kn">auth_request_set</span><span class="w"> </span><span class="nv">$auth_cookie</span><span class="w"> </span><span class="nv">$upstream_http_set_cookie</span><span class="p">;</span>
+</span><span id="__span-11-41"><a id="__codelineno-11-41" name="__codelineno-11-41" href="#__codelineno-11-41"></a><span class="w">    </span><span class="kn">add_header</span><span class="w"> </span><span class="s">Set-Cookie</span><span class="w"> </span><span class="nv">$auth_cookie</span><span class="p">;</span>
+</span><span id="__span-11-42"><a id="__codelineno-11-42" name="__codelineno-11-42" href="#__codelineno-11-42"></a>
+</span><span id="__span-11-43"><a id="__codelineno-11-43" name="__codelineno-11-43" href="#__codelineno-11-43"></a><span class="w">    </span><span class="c1"># When using the --set-authorization-header flag, some provider&#39;s cookies can exceed the 4kb</span>
+</span><span id="__span-11-44"><a id="__codelineno-11-44" name="__codelineno-11-44" href="#__codelineno-11-44"></a><span class="w">    </span><span class="c1"># limit and so the OAuth2 Proxy splits these into multiple parts.</span>
+</span><span id="__span-11-45"><a id="__codelineno-11-45" name="__codelineno-11-45" href="#__codelineno-11-45"></a><span class="w">    </span><span class="c1"># Nginx normally only copies the first `Set-Cookie` header from the auth_request to the response,</span>
+</span><span id="__span-11-46"><a id="__codelineno-11-46" name="__codelineno-11-46" href="#__codelineno-11-46"></a><span class="w">    </span><span class="c1"># so if your cookies are larger than 4kb, you will need to extract additional cookies manually.</span>
+</span><span id="__span-11-47"><a id="__codelineno-11-47" name="__codelineno-11-47" href="#__codelineno-11-47"></a><span class="w">    </span><span class="kn">auth_request_set</span><span class="w"> </span><span class="nv">$auth_cookie_name_upstream_1</span><span class="w"> </span><span class="nv">$upstream_cookie_auth_cookie_name_1</span><span class="p">;</span>
+</span><span id="__span-11-48"><a id="__codelineno-11-48" name="__codelineno-11-48" href="#__codelineno-11-48"></a>
+</span><span id="__span-11-49"><a id="__codelineno-11-49" name="__codelineno-11-49" href="#__codelineno-11-49"></a><span class="w">    </span><span class="c1"># Extract the Cookie attributes from the first Set-Cookie header and append them</span>
+</span><span id="__span-11-50"><a id="__codelineno-11-50" name="__codelineno-11-50" href="#__codelineno-11-50"></a><span class="w">    </span><span class="c1"># to the second part ($upstream_cookie_* variables only contain the raw cookie content)</span>
+</span><span id="__span-11-51"><a id="__codelineno-11-51" name="__codelineno-11-51" href="#__codelineno-11-51"></a><span class="w">    </span><span class="kn">if</span><span class="w"> </span><span class="s">(</span><span class="nv">$auth_cookie</span><span class="w"> </span><span class="p">~</span><span class="sr">*</span><span class="w"> </span><span class="s">&quot;(</span><span class="p">;</span><span class="w"> </span><span class="kn">.*)&quot;)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-52"><a id="__codelineno-11-52" name="__codelineno-11-52" href="#__codelineno-11-52"></a><span class="w">        </span><span class="kn">set</span><span class="w"> </span><span class="nv">$auth_cookie_name_0</span><span class="w"> </span><span class="nv">$auth_cookie</span><span class="p">;</span>
+</span><span id="__span-11-53"><a id="__codelineno-11-53" name="__codelineno-11-53" href="#__codelineno-11-53"></a><span class="w">        </span><span class="kn">set</span><span class="w"> </span><span class="nv">$auth_cookie_name_1</span><span class="w"> </span><span class="s">&quot;auth_cookie_name_1=</span><span class="nv">$auth_cookie_name_upstream_1$1&quot;</span><span class="p">;</span>
+</span><span id="__span-11-54"><a id="__codelineno-11-54" name="__codelineno-11-54" href="#__codelineno-11-54"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-11-55"><a id="__codelineno-11-55" name="__codelineno-11-55" href="#__codelineno-11-55"></a>
+</span><span id="__span-11-56"><a id="__codelineno-11-56" name="__codelineno-11-56" href="#__codelineno-11-56"></a><span class="w">    </span><span class="c1"># Send both Set-Cookie headers now if there was a second part</span>
+</span><span id="__span-11-57"><a id="__codelineno-11-57" name="__codelineno-11-57" href="#__codelineno-11-57"></a><span class="w">    </span><span class="kn">if</span><span class="w"> </span><span class="s">(</span><span class="nv">$auth_cookie_name_upstream_1</span><span class="s">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-58"><a id="__codelineno-11-58" name="__codelineno-11-58" href="#__codelineno-11-58"></a><span class="w">        </span><span class="kn">add_header</span><span class="w"> </span><span class="s">Set-Cookie</span><span class="w"> </span><span class="nv">$auth_cookie_name_0</span><span class="p">;</span>
+</span><span id="__span-11-59"><a id="__codelineno-11-59" name="__codelineno-11-59" href="#__codelineno-11-59"></a><span class="w">        </span><span class="kn">add_header</span><span class="w"> </span><span class="s">Set-Cookie</span><span class="w"> </span><span class="nv">$auth_cookie_name_1</span><span class="p">;</span>
+</span><span id="__span-11-60"><a id="__codelineno-11-60" name="__codelineno-11-60" href="#__codelineno-11-60"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-11-61"><a id="__codelineno-11-61" name="__codelineno-11-61" href="#__codelineno-11-61"></a>
+</span><span id="__span-11-62"><a id="__codelineno-11-62" name="__codelineno-11-62" href="#__codelineno-11-62"></a><span class="w">    </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://backend/</span><span class="p">;</span>
+</span><span id="__span-11-63"><a id="__codelineno-11-63" name="__codelineno-11-63" href="#__codelineno-11-63"></a><span class="w">    </span><span class="c1"># or &quot;root /path/to/site;&quot; or &quot;fastcgi_pass ...&quot; etc</span>
+</span><span id="__span-11-64"><a id="__codelineno-11-64" name="__codelineno-11-64" href="#__codelineno-11-64"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-11-65"><a id="__codelineno-11-65" name="__codelineno-11-65" href="#__codelineno-11-65"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>When you use ingress-nginx in Kubernetes, you MUST use <code>kubernetes/ingress-nginx</code> (which includes the Lua module) and the following configuration snippet for your <code>Ingress</code>.
+Variables set with <code>auth_request_set</code> are not <code>set</code>-able in plain nginx config when the location is processed via <code>proxy_pass</code> and then may only be processed by Lua.
+Note that <code>nginxinc/kubernetes-ingress</code> does not include the Lua module.</p>
+<p><div class="language-yaml highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">nginx.ingress.kubernetes.io/auth-response-headers</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Authorization</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nt">nginx.ingress.kubernetes.io/auth-signin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://$host/oauth2/start?rd=$escaped_request_uri</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nt">nginx.ingress.kubernetes.io/auth-url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://$host/oauth2/auth</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="nt">nginx.ingress.kubernetes.io/configuration-snippet</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">  </span><span class="no">auth_request_set $name_upstream_1 $upstream_cookie_name_1;</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">  </span><span class="no">access_by_lua_block {</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">    </span><span class="no">if ngx.var.name_upstream_1 ~= &quot;&quot; then</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">      </span><span class="no">ngx.header[&quot;Set-Cookie&quot;] = &quot;name_1=&quot; .. ngx.var.name_upstream_1 .. ngx.var.auth_cookie:match(&quot;(; .*)&quot;)</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">    </span><span class="no">end</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">  </span><span class="no">}</span>
+</span></code></pre></div>
+It is recommended to use <code>--session-store-type=redis</code> when expecting large sessions/OIDC tokens (<em>e.g.</em> with MS Azure).</p>
+<p>You have to substitute <em>name</em> with the actual cookie name you configured via --cookie-name parameter. If you don't set a custom cookie name the variable  should be "$upstream_cookie__oauth2_proxy_1" instead of "$upstream_cookie_name_1" and the new cookie-name should be "_oauth2_proxy_1=" instead of "name_1=".</p>
+<h2 id="configuring-for-use-with-the-traefik-v2-forwardauth-middleware">Configuring for use with the Traefik (v2) <code>ForwardAuth</code> middleware</h2>
+<p><strong>This option requires <code>--reverse-proxy</code> option to be set.</strong></p>
+<h3 id="forwardauth-with-401-errors-middleware">ForwardAuth with 401 errors middleware</h3>
+<p>The <a href="https://doc.traefik.io/traefik/middlewares/forwardauth/">Traefik v2 <code>ForwardAuth</code> middleware</a> allows Traefik to authenticate requests via the oauth2-proxy's <code>/oauth2/auth</code> endpoint on every request, which only returns a 202 Accepted response or a 401 Unauthorized response without proxying the whole request through. For example, on Dynamic File (YAML) Configuration:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nt">http</span><span class="p">:</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="nt">routers</span><span class="p">:</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="nt">a-service</span><span class="p">:</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">      </span><span class="nt">rule</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Host(`a-service.example.com`)&quot;</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">      </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a-service-backend</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">      </span><span class="nt">middlewares</span><span class="p">:</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oauth-errors</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oauth-auth</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">      </span><span class="nt">tls</span><span class="p">:</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">        </span><span class="nt">certResolver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">        </span><span class="nt">domains</span><span class="p">:</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">main</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;example.com&quot;</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="w">            </span><span class="nt">sans</span><span class="p">:</span>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;*.example.com&quot;</span>
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="w">    </span><span class="nt">oauth</span><span class="p">:</span>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="w">      </span><span class="nt">rule</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Host(`a-service.example.com`,</span><span class="nv"> </span><span class="s">`oauth.example.com`)</span><span class="nv"> </span><span class="s">&amp;&amp;</span><span class="nv"> </span><span class="s">PathPrefix(`/oauth2/`)&quot;</span>
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="w">      </span><span class="nt">middlewares</span><span class="p">:</span>
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">auth-headers</span>
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="w">      </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oauth-backend</span>
+</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="w">      </span><span class="nt">tls</span><span class="p">:</span>
+</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="w">        </span><span class="nt">certResolver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</span><span id="__span-13-22"><a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="w">        </span><span class="nt">domains</span><span class="p">:</span>
+</span><span id="__span-13-23"><a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">main</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;example.com&quot;</span>
+</span><span id="__span-13-24"><a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a><span class="w">            </span><span class="nt">sans</span><span class="p">:</span>
+</span><span id="__span-13-25"><a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a><span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;*.example.com&quot;</span>
+</span><span id="__span-13-26"><a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a>
+</span><span id="__span-13-27"><a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a><span class="w">  </span><span class="nt">services</span><span class="p">:</span>
+</span><span id="__span-13-28"><a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a><span class="w">    </span><span class="nt">a-service-backend</span><span class="p">:</span>
+</span><span id="__span-13-29"><a id="__codelineno-13-29" name="__codelineno-13-29" href="#__codelineno-13-29"></a><span class="w">      </span><span class="nt">loadBalancer</span><span class="p">:</span>
+</span><span id="__span-13-30"><a id="__codelineno-13-30" name="__codelineno-13-30" href="#__codelineno-13-30"></a><span class="w">        </span><span class="nt">servers</span><span class="p">:</span>
+</span><span id="__span-13-31"><a id="__codelineno-13-31" name="__codelineno-13-31" href="#__codelineno-13-31"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://172.16.0.2:7555</span>
+</span><span id="__span-13-32"><a id="__codelineno-13-32" name="__codelineno-13-32" href="#__codelineno-13-32"></a><span class="w">    </span><span class="nt">oauth-backend</span><span class="p">:</span>
+</span><span id="__span-13-33"><a id="__codelineno-13-33" name="__codelineno-13-33" href="#__codelineno-13-33"></a><span class="w">      </span><span class="nt">loadBalancer</span><span class="p">:</span>
+</span><span id="__span-13-34"><a id="__codelineno-13-34" name="__codelineno-13-34" href="#__codelineno-13-34"></a><span class="w">        </span><span class="nt">servers</span><span class="p">:</span>
+</span><span id="__span-13-35"><a id="__codelineno-13-35" name="__codelineno-13-35" href="#__codelineno-13-35"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://172.16.0.1:4180</span>
+</span><span id="__span-13-36"><a id="__codelineno-13-36" name="__codelineno-13-36" href="#__codelineno-13-36"></a>
+</span><span id="__span-13-37"><a id="__codelineno-13-37" name="__codelineno-13-37" href="#__codelineno-13-37"></a><span class="w">  </span><span class="nt">middlewares</span><span class="p">:</span>
+</span><span id="__span-13-38"><a id="__codelineno-13-38" name="__codelineno-13-38" href="#__codelineno-13-38"></a><span class="w">    </span><span class="nt">auth-headers</span><span class="p">:</span>
+</span><span id="__span-13-39"><a id="__codelineno-13-39" name="__codelineno-13-39" href="#__codelineno-13-39"></a><span class="w">      </span><span class="nt">headers</span><span class="p">:</span>
+</span><span id="__span-13-40"><a id="__codelineno-13-40" name="__codelineno-13-40" href="#__codelineno-13-40"></a><span class="w">        </span><span class="nt">sslRedirect</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-13-41"><a id="__codelineno-13-41" name="__codelineno-13-41" href="#__codelineno-13-41"></a><span class="w">        </span><span class="nt">stsSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">315360000</span>
+</span><span id="__span-13-42"><a id="__codelineno-13-42" name="__codelineno-13-42" href="#__codelineno-13-42"></a><span class="w">        </span><span class="nt">browserXssFilter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-13-43"><a id="__codelineno-13-43" name="__codelineno-13-43" href="#__codelineno-13-43"></a><span class="w">        </span><span class="nt">contentTypeNosniff</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-13-44"><a id="__codelineno-13-44" name="__codelineno-13-44" href="#__codelineno-13-44"></a><span class="w">        </span><span class="nt">forceSTSHeader</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-13-45"><a id="__codelineno-13-45" name="__codelineno-13-45" href="#__codelineno-13-45"></a><span class="w">        </span><span class="nt">sslHost</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example.com</span>
+</span><span id="__span-13-46"><a id="__codelineno-13-46" name="__codelineno-13-46" href="#__codelineno-13-46"></a><span class="w">        </span><span class="nt">stsIncludeSubdomains</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-13-47"><a id="__codelineno-13-47" name="__codelineno-13-47" href="#__codelineno-13-47"></a><span class="w">        </span><span class="nt">stsPreload</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-13-48"><a id="__codelineno-13-48" name="__codelineno-13-48" href="#__codelineno-13-48"></a><span class="w">        </span><span class="nt">frameDeny</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-13-49"><a id="__codelineno-13-49" name="__codelineno-13-49" href="#__codelineno-13-49"></a><span class="w">    </span><span class="nt">oauth-auth</span><span class="p">:</span>
+</span><span id="__span-13-50"><a id="__codelineno-13-50" name="__codelineno-13-50" href="#__codelineno-13-50"></a><span class="w">      </span><span class="nt">forwardAuth</span><span class="p">:</span>
+</span><span id="__span-13-51"><a id="__codelineno-13-51" name="__codelineno-13-51" href="#__codelineno-13-51"></a><span class="w">        </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://oauth.example.com/oauth2/auth</span>
+</span><span id="__span-13-52"><a id="__codelineno-13-52" name="__codelineno-13-52" href="#__codelineno-13-52"></a><span class="w">        </span><span class="nt">trustForwardHeader</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-13-53"><a id="__codelineno-13-53" name="__codelineno-13-53" href="#__codelineno-13-53"></a><span class="w">    </span><span class="nt">oauth-errors</span><span class="p">:</span>
+</span><span id="__span-13-54"><a id="__codelineno-13-54" name="__codelineno-13-54" href="#__codelineno-13-54"></a><span class="w">      </span><span class="nt">errors</span><span class="p">:</span>
+</span><span id="__span-13-55"><a id="__codelineno-13-55" name="__codelineno-13-55" href="#__codelineno-13-55"></a><span class="w">        </span><span class="nt">status</span><span class="p">:</span>
+</span><span id="__span-13-56"><a id="__codelineno-13-56" name="__codelineno-13-56" href="#__codelineno-13-56"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;401-403&quot;</span>
+</span><span id="__span-13-57"><a id="__codelineno-13-57" name="__codelineno-13-57" href="#__codelineno-13-57"></a><span class="w">        </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oauth-backend</span>
+</span><span id="__span-13-58"><a id="__codelineno-13-58" name="__codelineno-13-58" href="#__codelineno-13-58"></a><span class="w">        </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/oauth2/sign_in?rd={url}&quot;</span>
+</span></code></pre></div>
+<h3 id="forwardauth-with-static-upstreams-configuration">ForwardAuth with static upstreams configuration</h3>
+<p>Redirect to sign_in functionality provided without the use of <code>errors</code> middleware with <a href="https://doc.traefik.io/traefik/middlewares/forwardauth/">Traefik v2 <code>ForwardAuth</code> middleware</a> pointing to oauth2-proxy service's <code>/</code> endpoint</p>
+<p><strong>Following options need to be set on <code>oauth2-proxy</code>:</strong>
+- <code>--upstream=static://202</code>: Configures a static response for authenticated sessions
+- <code>--reverse-proxy=true</code>: Enables the use of <code>X-Forwarded-*</code> headers to determine redirects correctly</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nt">http</span><span class="p">:</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span><span class="nt">routers</span><span class="p">:</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="nt">a-service-route-1</span><span class="p">:</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">      </span><span class="nt">rule</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Host(`a-service.example.com`,</span><span class="nv"> </span><span class="s">`b-service.example.com`)</span><span class="nv"> </span><span class="s">&amp;&amp;</span><span class="nv"> </span><span class="s">PathPrefix(`/`)&quot;</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">      </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a-service-backend</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">      </span><span class="nt">middlewares</span><span class="p">:</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oauth-auth-redirect</span><span class="w"> </span><span class="c1"># redirects all unauthenticated to oauth2 signin</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">      </span><span class="nt">tls</span><span class="p">:</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">        </span><span class="nt">certResolver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">        </span><span class="nt">domains</span><span class="p">:</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">main</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;example.com&quot;</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="w">            </span><span class="nt">sans</span><span class="p">:</span>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;*.example.com&quot;</span>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="w">    </span><span class="nt">a-service-route-2</span><span class="p">:</span>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="w">      </span><span class="nt">rule</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Host(`a-service.example.com`)</span><span class="nv"> </span><span class="s">&amp;&amp;</span><span class="nv"> </span><span class="s">PathPrefix(`/no-auto-redirect`)&quot;</span>
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="w">      </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a-service-backend</span>
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="w">      </span><span class="nt">middlewares</span><span class="p">:</span>
+</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oauth-auth-wo-redirect</span><span class="w"> </span><span class="c1"># unauthenticated session will return a 401</span>
+</span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a><span class="w">      </span><span class="nt">tls</span><span class="p">:</span>
+</span><span id="__span-14-20"><a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="w">        </span><span class="nt">certResolver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</span><span id="__span-14-21"><a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a><span class="w">        </span><span class="nt">domains</span><span class="p">:</span>
+</span><span id="__span-14-22"><a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">main</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;example.com&quot;</span>
+</span><span id="__span-14-23"><a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a><span class="w">            </span><span class="nt">sans</span><span class="p">:</span>
+</span><span id="__span-14-24"><a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a><span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;*.example.com&quot;</span>
+</span><span id="__span-14-25"><a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a><span class="w">    </span><span class="nt">services-oauth2-route</span><span class="p">:</span>
+</span><span id="__span-14-26"><a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a><span class="w">      </span><span class="nt">rule</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Host(`a-service.example.com`,</span><span class="nv"> </span><span class="s">`b-service.example.com`)</span><span class="nv"> </span><span class="s">&amp;&amp;</span><span class="nv"> </span><span class="s">PathPrefix(`/oauth2/`)&quot;</span>
+</span><span id="__span-14-27"><a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a><span class="w">      </span><span class="nt">middlewares</span><span class="p">:</span>
+</span><span id="__span-14-28"><a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">auth-headers</span>
+</span><span id="__span-14-29"><a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a><span class="w">      </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oauth-backend</span>
+</span><span id="__span-14-30"><a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a><span class="w">      </span><span class="nt">tls</span><span class="p">:</span>
+</span><span id="__span-14-31"><a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a><span class="w">        </span><span class="nt">certResolver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</span><span id="__span-14-32"><a id="__codelineno-14-32" name="__codelineno-14-32" href="#__codelineno-14-32"></a><span class="w">        </span><span class="nt">domains</span><span class="p">:</span>
+</span><span id="__span-14-33"><a id="__codelineno-14-33" name="__codelineno-14-33" href="#__codelineno-14-33"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">main</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;example.com&quot;</span>
+</span><span id="__span-14-34"><a id="__codelineno-14-34" name="__codelineno-14-34" href="#__codelineno-14-34"></a><span class="w">            </span><span class="nt">sans</span><span class="p">:</span>
+</span><span id="__span-14-35"><a id="__codelineno-14-35" name="__codelineno-14-35" href="#__codelineno-14-35"></a><span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;*.example.com&quot;</span>
+</span><span id="__span-14-36"><a id="__codelineno-14-36" name="__codelineno-14-36" href="#__codelineno-14-36"></a><span class="w">    </span><span class="nt">oauth2-proxy-route</span><span class="p">:</span>
+</span><span id="__span-14-37"><a id="__codelineno-14-37" name="__codelineno-14-37" href="#__codelineno-14-37"></a><span class="w">      </span><span class="nt">rule</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Host(`oauth.example.com`)</span><span class="nv"> </span><span class="s">&amp;&amp;</span><span class="nv"> </span><span class="s">PathPrefix(`/`)&quot;</span>
+</span><span id="__span-14-38"><a id="__codelineno-14-38" name="__codelineno-14-38" href="#__codelineno-14-38"></a><span class="w">      </span><span class="nt">middlewares</span><span class="p">:</span>
+</span><span id="__span-14-39"><a id="__codelineno-14-39" name="__codelineno-14-39" href="#__codelineno-14-39"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">auth-headers</span>
+</span><span id="__span-14-40"><a id="__codelineno-14-40" name="__codelineno-14-40" href="#__codelineno-14-40"></a><span class="w">      </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oauth-backend</span>
+</span><span id="__span-14-41"><a id="__codelineno-14-41" name="__codelineno-14-41" href="#__codelineno-14-41"></a><span class="w">      </span><span class="nt">tls</span><span class="p">:</span>
+</span><span id="__span-14-42"><a id="__codelineno-14-42" name="__codelineno-14-42" href="#__codelineno-14-42"></a><span class="w">        </span><span class="nt">certResolver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</span><span id="__span-14-43"><a id="__codelineno-14-43" name="__codelineno-14-43" href="#__codelineno-14-43"></a><span class="w">        </span><span class="nt">domains</span><span class="p">:</span>
+</span><span id="__span-14-44"><a id="__codelineno-14-44" name="__codelineno-14-44" href="#__codelineno-14-44"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">main</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;example.com&quot;</span>
+</span><span id="__span-14-45"><a id="__codelineno-14-45" name="__codelineno-14-45" href="#__codelineno-14-45"></a><span class="w">            </span><span class="nt">sans</span><span class="p">:</span>
+</span><span id="__span-14-46"><a id="__codelineno-14-46" name="__codelineno-14-46" href="#__codelineno-14-46"></a><span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;*.example.com&quot;</span>
+</span><span id="__span-14-47"><a id="__codelineno-14-47" name="__codelineno-14-47" href="#__codelineno-14-47"></a>
+</span><span id="__span-14-48"><a id="__codelineno-14-48" name="__codelineno-14-48" href="#__codelineno-14-48"></a><span class="w">  </span><span class="nt">services</span><span class="p">:</span>
+</span><span id="__span-14-49"><a id="__codelineno-14-49" name="__codelineno-14-49" href="#__codelineno-14-49"></a><span class="w">    </span><span class="nt">a-service-backend</span><span class="p">:</span>
+</span><span id="__span-14-50"><a id="__codelineno-14-50" name="__codelineno-14-50" href="#__codelineno-14-50"></a><span class="w">      </span><span class="nt">loadBalancer</span><span class="p">:</span>
+</span><span id="__span-14-51"><a id="__codelineno-14-51" name="__codelineno-14-51" href="#__codelineno-14-51"></a><span class="w">        </span><span class="nt">servers</span><span class="p">:</span>
+</span><span id="__span-14-52"><a id="__codelineno-14-52" name="__codelineno-14-52" href="#__codelineno-14-52"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://172.16.0.2:7555</span>
+</span><span id="__span-14-53"><a id="__codelineno-14-53" name="__codelineno-14-53" href="#__codelineno-14-53"></a><span class="w">    </span><span class="nt">b-service-backend</span><span class="p">:</span>
+</span><span id="__span-14-54"><a id="__codelineno-14-54" name="__codelineno-14-54" href="#__codelineno-14-54"></a><span class="w">      </span><span class="nt">loadBalancer</span><span class="p">:</span>
+</span><span id="__span-14-55"><a id="__codelineno-14-55" name="__codelineno-14-55" href="#__codelineno-14-55"></a><span class="w">        </span><span class="nt">servers</span><span class="p">:</span>
+</span><span id="__span-14-56"><a id="__codelineno-14-56" name="__codelineno-14-56" href="#__codelineno-14-56"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://172.16.0.3:7555</span>
+</span><span id="__span-14-57"><a id="__codelineno-14-57" name="__codelineno-14-57" href="#__codelineno-14-57"></a><span class="w">    </span><span class="nt">oauth-backend</span><span class="p">:</span>
+</span><span id="__span-14-58"><a id="__codelineno-14-58" name="__codelineno-14-58" href="#__codelineno-14-58"></a><span class="w">      </span><span class="nt">loadBalancer</span><span class="p">:</span>
+</span><span id="__span-14-59"><a id="__codelineno-14-59" name="__codelineno-14-59" href="#__codelineno-14-59"></a><span class="w">        </span><span class="nt">servers</span><span class="p">:</span>
+</span><span id="__span-14-60"><a id="__codelineno-14-60" name="__codelineno-14-60" href="#__codelineno-14-60"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://172.16.0.1:4180</span>
+</span><span id="__span-14-61"><a id="__codelineno-14-61" name="__codelineno-14-61" href="#__codelineno-14-61"></a>
+</span><span id="__span-14-62"><a id="__codelineno-14-62" name="__codelineno-14-62" href="#__codelineno-14-62"></a><span class="w">  </span><span class="nt">middlewares</span><span class="p">:</span>
+</span><span id="__span-14-63"><a id="__codelineno-14-63" name="__codelineno-14-63" href="#__codelineno-14-63"></a><span class="w">    </span><span class="nt">auth-headers</span><span class="p">:</span>
+</span><span id="__span-14-64"><a id="__codelineno-14-64" name="__codelineno-14-64" href="#__codelineno-14-64"></a><span class="w">      </span><span class="nt">headers</span><span class="p">:</span>
+</span><span id="__span-14-65"><a id="__codelineno-14-65" name="__codelineno-14-65" href="#__codelineno-14-65"></a><span class="w">        </span><span class="nt">sslRedirect</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-14-66"><a id="__codelineno-14-66" name="__codelineno-14-66" href="#__codelineno-14-66"></a><span class="w">        </span><span class="nt">stsSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">315360000</span>
+</span><span id="__span-14-67"><a id="__codelineno-14-67" name="__codelineno-14-67" href="#__codelineno-14-67"></a><span class="w">        </span><span class="nt">browserXssFilter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-14-68"><a id="__codelineno-14-68" name="__codelineno-14-68" href="#__codelineno-14-68"></a><span class="w">        </span><span class="nt">contentTypeNosniff</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-14-69"><a id="__codelineno-14-69" name="__codelineno-14-69" href="#__codelineno-14-69"></a><span class="w">        </span><span class="nt">forceSTSHeader</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-14-70"><a id="__codelineno-14-70" name="__codelineno-14-70" href="#__codelineno-14-70"></a><span class="w">        </span><span class="nt">sslHost</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example.com</span>
+</span><span id="__span-14-71"><a id="__codelineno-14-71" name="__codelineno-14-71" href="#__codelineno-14-71"></a><span class="w">        </span><span class="nt">stsIncludeSubdomains</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-14-72"><a id="__codelineno-14-72" name="__codelineno-14-72" href="#__codelineno-14-72"></a><span class="w">        </span><span class="nt">stsPreload</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-14-73"><a id="__codelineno-14-73" name="__codelineno-14-73" href="#__codelineno-14-73"></a><span class="w">        </span><span class="nt">frameDeny</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-14-74"><a id="__codelineno-14-74" name="__codelineno-14-74" href="#__codelineno-14-74"></a><span class="w">    </span><span class="nt">oauth-auth-redirect</span><span class="p">:</span>
+</span><span id="__span-14-75"><a id="__codelineno-14-75" name="__codelineno-14-75" href="#__codelineno-14-75"></a><span class="w">      </span><span class="nt">forwardAuth</span><span class="p">:</span>
+</span><span id="__span-14-76"><a id="__codelineno-14-76" name="__codelineno-14-76" href="#__codelineno-14-76"></a><span class="w">        </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://oauth.example.com/</span>
+</span><span id="__span-14-77"><a id="__codelineno-14-77" name="__codelineno-14-77" href="#__codelineno-14-77"></a><span class="w">        </span><span class="nt">trustForwardHeader</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-14-78"><a id="__codelineno-14-78" name="__codelineno-14-78" href="#__codelineno-14-78"></a><span class="w">        </span><span class="nt">authResponseHeaders</span><span class="p">:</span>
+</span><span id="__span-14-79"><a id="__codelineno-14-79" name="__codelineno-14-79" href="#__codelineno-14-79"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">X-Auth-Request-Access-Token</span>
+</span><span id="__span-14-80"><a id="__codelineno-14-80" name="__codelineno-14-80" href="#__codelineno-14-80"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Authorization</span>
+</span><span id="__span-14-81"><a id="__codelineno-14-81" name="__codelineno-14-81" href="#__codelineno-14-81"></a><span class="w">    </span><span class="nt">oauth-auth-wo-redirect</span><span class="p">:</span>
+</span><span id="__span-14-82"><a id="__codelineno-14-82" name="__codelineno-14-82" href="#__codelineno-14-82"></a><span class="w">      </span><span class="nt">forwardAuth</span><span class="p">:</span>
+</span><span id="__span-14-83"><a id="__codelineno-14-83" name="__codelineno-14-83" href="#__codelineno-14-83"></a><span class="w">        </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://oauth.example.com/oauth2/auth</span>
+</span><span id="__span-14-84"><a id="__codelineno-14-84" name="__codelineno-14-84" href="#__codelineno-14-84"></a><span class="w">        </span><span class="nt">trustForwardHeader</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-14-85"><a id="__codelineno-14-85" name="__codelineno-14-85" href="#__codelineno-14-85"></a><span class="w">        </span><span class="nt">authResponseHeaders</span><span class="p">:</span>
+</span><span id="__span-14-86"><a id="__codelineno-14-86" name="__codelineno-14-86" href="#__codelineno-14-86"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">X-Auth-Request-Access-Token</span>
+</span><span id="__span-14-87"><a id="__codelineno-14-87" name="__codelineno-14-87" href="#__codelineno-14-87"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Authorization</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you set up your OAuth2 provider to rotate your client secret, you can use the <code>client-secret-file</code> option to reload the secret when it is updated.</p>
+</div>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Only these providers support <code>--cookie-refresh</code>: GitLab, Google and OIDC&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>When using the <code>whitelist-domain</code> option, any domain prefixed with a <code>.</code> or a <code>*.</code> will allow any subdomain of the specified domain as a valid redirect URL. By default, only empty ports are allowed. This translates to allowing the default port of the URLs protocol (80 for HTTP, 443 for HTTPS, etc.) since browsers omit them. To allow only a specific port, add it to the whitelisted domain: <code>example.com:8080</code>. To allow any port, use <code>*</code>: <code>example.com:*</code>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 22, 2024</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../alpha_config/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Alpha Configuration">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Alpha Configuration
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../providers/adfs/" class="md-footer__link md-footer__link--next" aria-label="Next: ADFS">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                ADFS
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2012 - 2024 OAuth2 Proxy Authors
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/oauth2-proxy" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+    
+  
+
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="github" checked>
+          <span class="task-list-indicator"></span>
+          GitHub
+        </label>
+      </li>
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.path", "navigation.expand", "navigation.indexes", "navigation.footer", "content.code.copy", "search.suggest", "search.share"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>
