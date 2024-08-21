@@ -113,7 +113,6 @@ func (p *OIDCProvider) makeAssertionToken() (string, error) {
 		Header: map[string]interface{}{
 			"alg": jwtConfig.SigningMethod.Alg(),
 			"typ": "JWT",
-			"kid": jwtConfig.KeyId,
 		},
 		Claims: jwt.MapClaims{
 			"iat": time.Now().Unix(),
@@ -124,6 +123,10 @@ func (p *OIDCProvider) makeAssertionToken() (string, error) {
 			"jti": uuid.New().String(),
 		},
 		Method: jwtConfig.SigningMethod,
+	}
+
+	if jwtConfig.KeyId != "" {
+		authToken.Header["kid"] = jwtConfig.KeyId
 	}
 
 	signedAuthToken, err := authToken.SignedString(jwtConfig.JWTKey)
