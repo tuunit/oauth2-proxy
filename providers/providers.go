@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/apis/options"
+	"github.com/minio/console/pkg/2-proxy/v7/pkg/apis/options"
 	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/apis/sessions"
-	logger "github.com/oauth2-proxy/oauth2-proxy/v7/pkg/logger/legacy"
+	slogger "github.com/oauth2-proxy/oauth2-proxy/v7/pkg/logger/structured"
 	internaloidc "github.com/oauth2-proxy/oauth2-proxy/v7/pkg/providers/oidc"
 	k8serrors "k8s.io/apimachinery/pkg/util/errors"
 )
@@ -16,6 +16,8 @@ const (
 	CodeChallengeMethodPlain = "plain"
 	CodeChallengeMethodS256  = "S256"
 )
+
+var logs = slogger.GetLogger("provider")
 
 // Provider represents an upstream identity provider implementation
 type Provider interface {
@@ -146,7 +148,7 @@ func newProviderDataFromConfig(providerConfig options.Provider) (*ProviderData, 
 	// Set PKCE enabled or disabled based on discovery and force options
 	p.CodeChallengeMethod = parseCodeChallengeMethod(providerConfig)
 	if len(p.SupportedCodeChallengeMethods) != 0 && p.CodeChallengeMethod == "" {
-		logger.Printf("Warning: Your provider supports PKCE methods %+q, but you have not enabled one with --code-challenge-method", p.SupportedCodeChallengeMethods)
+		logs.Info("your provider supports PKCE methods, but you have not enabled one with the code-challenge-method option", "code-challenge-methods", p.SupportedCodeChallengeMethods)
 	}
 
 	if providerConfig.OIDCConfig.UserIDClaim == "" {

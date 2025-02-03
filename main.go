@@ -42,6 +42,10 @@ func main() {
 		logger.Fatalf("ERROR: %v", err)
 	}
 
+	// TODO: initialize logger using new configuration opts
+	// slogger.InitializeBaseLogger(opts.Logging)
+	//slogger.InitializeBaseLogger(slogger.JSONLogger)
+
 	if *convertConfig {
 		if err := printConvertedConfig(opts); err != nil {
 			logger.Fatalf("ERROR: could not convert config: %v", err)
