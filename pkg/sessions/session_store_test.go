@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/apis/options"
-	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/logger"
+	logger "github.com/oauth2-proxy/oauth2-proxy/v7/pkg/logger/legacy"
 	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/sessions"
 	sessionscookie "github.com/oauth2-proxy/oauth2-proxy/v7/pkg/sessions/cookie"
 	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/sessions/persistence"

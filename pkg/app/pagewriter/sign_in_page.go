@@ -14,7 +14,7 @@ import (
 	"net/http"
 
 	middlewareapi "github.com/oauth2-proxy/oauth2-proxy/v7/pkg/apis/middleware"
-	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/logger"
+	logger "github.com/oauth2-proxy/oauth2-proxy/v7/pkg/logger/legacy"
 )
 
 //go:embed default_logo.svg

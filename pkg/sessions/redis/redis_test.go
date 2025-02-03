@@ -9,7 +9,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/logger"
+	logger "github.com/oauth2-proxy/oauth2-proxy/v7/pkg/logger/legacy"
 	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/util"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"

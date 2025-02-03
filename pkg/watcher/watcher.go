@@ -8,7 +8,7 @@ import (
 
 	"github.com/fsnotify/fsnotify"
 
-	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/logger"
+	logger "github.com/oauth2-proxy/oauth2-proxy/v7/pkg/logger/legacy"
 )
 
 // WatchFileForUpdates performs an action every time a file on disk is updated
