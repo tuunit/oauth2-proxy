@@ -31,7 +31,7 @@ import (
 	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/util"
 
 	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/ip"
-	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/logger"
+	logger "github.com/oauth2-proxy/oauth2-proxy/v7/pkg/logger/legacy"
 	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/middleware"
 	requestutil "github.com/oauth2-proxy/oauth2-proxy/v7/pkg/requests/util"
 	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/sessions"

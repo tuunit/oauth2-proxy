@@ -13,7 +13,7 @@ import (
 	"github.com/justinas/alice"
 	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/apis/options"
 	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/app/pagewriter"
-	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/logger"
+	logger "github.com/oauth2-proxy/oauth2-proxy/v7/pkg/logger/legacy"
 )
 
 // ProxyErrorHandler is a function that will be used to render error pages when

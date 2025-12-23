@@ -11,7 +11,8 @@ import (
 	"github.com/mbland/hmacauth"
 	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/apis/options"
 	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/ip"
-	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/logger"
+	log "github.com/oauth2-proxy/oauth2-proxy/v7/pkg/logger"
+	logger "github.com/oauth2-proxy/oauth2-proxy/v7/pkg/logger/legacy"
 	internaloidc "github.com/oauth2-proxy/oauth2-proxy/v7/pkg/providers/oidc"
 	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/util"
 )
@@ -99,6 +100,14 @@ func Validate(o *options.Options) error {
 
 	// Do this after ReverseProxy validation for TrustedIP coordinated checks
 	msgs = append(msgs, validateAllowlists(o)...)
+
+	log.SetLevel(2)
+	log.LoggerWithName("options").V(0).Info("With Level 2 - Level 0")
+	log.LoggerWithName("options").V(1).Info("With Level 2 - Level 1")
+
+	log.SetLevel(0)
+	log.LoggerWithName("options").V(0).Info("With Level 0 - Level 0")
+	log.LoggerWithName("options").V(1).Info("With Level 0 - Level 1")
 
 	if len(msgs) != 0 {
 		return fmt.Errorf("invalid configuration:\n  %s",

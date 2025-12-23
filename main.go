@@ -9,13 +9,16 @@ import (
 
 	"github.com/ghodss/yaml"
 	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/apis/options"
-	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/logger"
+	log "github.com/oauth2-proxy/oauth2-proxy/v7/pkg/logger"
+	logger "github.com/oauth2-proxy/oauth2-proxy/v7/pkg/logger/legacy"
 	"github.com/oauth2-proxy/oauth2-proxy/v7/pkg/validation"
 	"github.com/spf13/pflag"
 )
 
 func main() {
 	logger.SetFlags(logger.Lshortfile)
+	l := log.NewLogger()
+	l.Info("Starting oauth2-proxy", "version", VERSION)
 
 	configFlagSet := pflag.NewFlagSet("oauth2-proxy", pflag.ContinueOnError)
 
