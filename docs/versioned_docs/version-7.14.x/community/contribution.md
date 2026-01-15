@@ -39,7 +39,7 @@ For starting oauth2-proxy locally open the debugging tab and create the `launch.
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch OAuth2-Proxy with Dex",
+            "name": "Launch OAuth2 Proxy with Dex",
             "type": "go",
             "request": "launch",
             "mode": "auto",
@@ -52,7 +52,7 @@ For starting oauth2-proxy locally open the debugging tab and create the `launch.
             ]
         },
         {
-            "name": "Launch OAuth2-Proxy with Keycloak",
+            "name": "Launch OAuth2 Proxy with Keycloak",
             "type": "go",
             "request": "launch",
             "mode": "auto",
@@ -85,7 +85,7 @@ The username and password for all setups is usually `admin@example.com` and `pas
 
 The docker compose setups expose the services with a dynamic reverse DNS resolver: localtest.me
 
-- OAuth2-Proxy: http://oauth2-proxy.localtest.me:4180
+- OAuth2 Proxy: http://oauth2-proxy.localtest.me:4180
 - Upstream: http://httpbin.localtest.me:8080
 - Dex: http://dex.localtest.me:5556
 
