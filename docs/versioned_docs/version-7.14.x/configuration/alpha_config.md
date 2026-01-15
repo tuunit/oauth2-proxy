@@ -24,16 +24,55 @@ When using alpha configuration, your config file will look something like below:
 upstreams:
   - id: ...
     ...: ...
+providers:
+  - id: ...
+    ...: ...
+cookie:
+  secret: ...
+  ...: ...
 injectRequestHeaders:
-  - name: ...
-    ...: ...
+  - secretSource:
+      ...: ...
 injectResponseHeaders:
-  - name: ...
-    ...: ...
+  - claimSource:
+      ...: ...
 ```
 
 Please browse the [reference](#configuration-reference) below for the structure
 of the new configuration format.
+
+# Migration Guide
+
+This section details breaking changes and migration steps for moving to the new
+alpha configuration format.
+
+## Migrating header injections in v7.14.0
+
+From v7.14.0 onward, header injection sources must be explicitly nested. If you
+previously relied on squashed fields, update to the new structure before
+upgrading:
+
+```yaml
+# before v7.14.0
+injectRequestHeaders:
+- name: X-Forwarded-User
+  values:
+  - claim: user
+- name: X-Custom-Secret-header
+  values:
+  - value: my-super-secret
+
+# v7.14.0 and later
+injectRequestHeaders:
+- name: X-Forwarded-User
+  values:
+  - claimSource:
+      claim: user
+- name: X-Custom-Secret-header
+  values:
+  - secretSource:
+      value: my-super-secret
+```
 
 ## Using Alpha Configuration
 
@@ -67,9 +106,9 @@ the new config.
 oauth2-proxy --alpha-config ./path/to/new/config.yaml --config ./path/to/existing/config.cfg
 ```
 
-## Using ENV variables in the alpha configuration
+### How to use environment variables
 
-The alpha package supports the use of environment variables in place of yaml keys, allowing sensitive values to be pulled from somewhere other than the yaml file.
+The alpha package supports the use of environment variables in place of yaml values, allowing sensitive data to be pulled from somewhere other than the yaml file.
 When using environment variables, your yaml will look like this:
 
 ```yaml
@@ -80,6 +119,46 @@ When using environment variables, your yaml will look like this:
 ```
 Where CLIENT_SECRET is an environment variable.
 More information and available patterns can be found [here](https://github.com/a8m/envsubst#docs)
+
+### How to inject custom headers
+
+Configure `injectRequestHeaders` and `injectResponseHeaders` in alpha config YAML.
+
+```yaml
+injectRequestHeaders:
+  - name: "X-User-Email"
+    values:
+      - claimSource:
+          claim: "email" # extract the email claim contents from the id token
+  - name: "X-Static-Secret"
+    values:
+      # secrets need to be encoded with base64 when directly in the yaml config but will be send decoded
+      - secretSource:
+          value: "c3VwZXItc2VjcmV0"
+  - name: "X-Static-File-Secret"
+      - secretSource:
+          fromFile: "/path/to/my/secret"
+  - name: "X-Static-Env-Secret"
+      - secretSource:
+          value: "${MY_SECRET_ENV}" # content still needs to be base64 encoded
+injectResponseHeaders:
+  # Following will result in a header "Authorization: Basic <user:password> (encoded)"
+  - name: "Authorization"
+    values:
+    - claimSource:
+        claim: user
+        prefix: "Basic "
+        basicAuthPassword:
+          value: c3VwZXItc2VjcmV0LXBhc3N3b3Jk # base64 encoded password
+```
+
+**Value sources:** 
+* `claimSource` - `claim` (session claims either from id token or from profile URL)
+* `secretSource` - `value` (base64), `fromFile` (file path)
+
+**Request option:** `preserveRequestValue: true` retains existing header values
+
+**Incompatibility:** Remove legacy flags `pass-user-headers`, `set-xauthrequest`
 
 ## Removed options
 
