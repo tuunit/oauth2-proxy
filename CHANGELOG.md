@@ -6,6 +6,16 @@
 
 ## Breaking Changes
 
+## Changes since v7.14.0
+
+# V7.14.0
+
+## Release Highlights
+
+## Important Notes
+
+## Breaking Changes
+
 ## Changes since v7.13.0
 
 - [#3290](https://github.com/oauth2-proxy/oauth2-proxy/pull/3290) fix: WebSocket proxy to respect PassHostHeader setting (@UnsignedLong)
