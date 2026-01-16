@@ -17,7 +17,7 @@
   - [CVE-2025-61727](https://access.redhat.com/security/cve/cve-2025-61727)
   - [CVE-2025-47914](https://access.redhat.com/security/cve/cve-2025-47914)
   - [CVE-2025-58181](https://access.redhat.com/security/cve/cve-2025-58181)
-- 🗂️ Alpha Config YAML parsing revamped using mapstructure with custom decoders
+- 🗂️ AMajor Alpha Config YAML parsing revamped for better extensibility and preparing v8
 - 🐛 Squashed some bugs
 
 ## Important Notes
@@ -50,6 +50,38 @@ injectRequestHeaders:
   - secretSource:
       value: my-super-secret
 ```
+
+Furthermore, Alpha Config now fully supports configuring the `Server` struct using YAML.
+
+```yaml
+// Server represents the configuration for the Proxy HTTP(S) configuration.
+type Server struct {
+	// BindAddress is the address on which to serve traffic.
+	BindAddress string `yaml:"bindAddress,omitempty"`
+
+	// SecureBindAddress is the address on which to serve secure traffic.
+	SecureBindAddress string `yaml:"secureBindAddress,omitempty"`
+
+	// TLS contains the information for loading the certificate and key for the
+	// secure traffic and further configuration for the TLS server.
+	TLS *TLS `yaml:"tls,omitempty"`
+}
+
+// TLS contains the information for loading a TLS certificate and key
+// as well as an optional minimal TLS version that is acceptable.
+type TLS struct {
+    // Key is the TLS key data to use.
+	Key *SecretSource `yaml:"key,omitempty"`
+    // Cert is the TLS certificate data to use.
+	Cert *SecretSource `yaml:"cert,omitempty"`
+    // MinVersion is the minimal TLS version that is acceptable.
+	MinVersion string `yaml:"minVersion,omitempty"`
+    // CipherSuites is a list of TLS cipher suites that are allowed.
+	CipherSuites []string `yaml:"cipherSuites,omitempty"`
+}
+```
+
+More about how to use Alpha Config can be found in the [documentation](https://oauth2-proxy.github.io/oauth2-proxy/configuration/alpha-config#server).
 
 We are committed to Semantic Versioning and usually avoid breaking changes without a major version release.
 Advancing Alpha Config toward its Beta stage required this exception, and even for the Alpha Config we try
