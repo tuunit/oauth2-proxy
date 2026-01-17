@@ -397,9 +397,10 @@ func buildSessionChain(opts *options.Options, provider providers.Provider, sessi
 	chain := alice.New()
 
 	if opts.SkipJwtBearerTokens {
-		sessionLoaders := []middlewareapi.TokenToSessionFunc{
-			provider.CreateSessionFromToken,
-		}
+		verifiers := opts.GetJWTBearerVerifiers()
+
+		sessionLoaders := make([]middlewareapi.TokenToSessionFunc, 0, len(verifiers)+1)
+		sessionLoaders = append(sessionLoaders, provider.CreateSessionFromToken)
 
 		for _, verifier := range opts.GetJWTBearerVerifiers() {
 			sessionLoaders = append(sessionLoaders,

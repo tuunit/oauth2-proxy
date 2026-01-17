@@ -9,6 +9,7 @@ import (
 )
 
 func validateUpstreams(upstreams options.UpstreamConfig) []string {
+	//nolint:prealloc
 	msgs := []string{}
 	ids := make(map[string]struct{})
 	paths := make(map[string]struct{})
