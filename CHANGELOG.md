@@ -6,6 +6,21 @@
 
 ## Breaking Changes
 
+## Changes since v7.14.1
+
+# V7.14.1
+
+## Release Highlights
+
+- 🔵 Go1.25.6 and upgrade of dependencies to latest versions
+- 🐛 Bug fixes
+  - AuthOnly now starts the auth flow and send status code 302 if no session exists and skip-provider-button is true
+  - Fixed static upstream validation issue due to incorrect defaults
+
+## Important Notes
+
+## Breaking Changes
+
 ## Changes since v7.14.0
 
 - [#3309](https://github.com/oauth2-proxy/oauth2-proxy/pull/3309) fix: Return 302 redirect from AuthOnly endpoint when skip-provider-button is true (@StefanMarkmann)
