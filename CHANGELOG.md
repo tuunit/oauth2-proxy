@@ -12,6 +12,11 @@
 
 ## Release Highlights
 
+- 🔵 Go1.25.6 and upgrade of dependencies to latest versions
+- 🐛 Bug fixes
+  - AuthOnly now starts the auth flow and send status code 302 if no session exists and skip-provider-button is true
+  - Fixed static upstream validation issue due to incorrect defaults
+
 ## Important Notes
 
 ## Breaking Changes
