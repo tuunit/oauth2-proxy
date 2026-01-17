@@ -8,6 +8,8 @@
 
 ## Changes since v7.14.0
 
+- [#3309](https://github.com/oauth2-proxy/oauth2-proxy/pull/3309) fix: Return 302 redirect from AuthOnly endpoint when skip-provider-button is true (@StefanMarkmann)
+
 # V7.14.0
 
 ## Release Highlights
