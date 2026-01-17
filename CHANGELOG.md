@@ -8,6 +8,8 @@
 
 ## Changes since v7.14.1
 
+- [#3314](https://github.com/oauth2-proxy/oauth2-proxy/pull/3314) revert: fix: skip provider button auth only redirect (#3309)
+
 # V7.14.1
 
 ## Release Highlights
