@@ -6,14 +6,101 @@
 
 ## Breaking Changes
 
+## Changes since v7.14.0
+
+# V7.14.0
+
+## Release Highlights
+
+- 🕵️‍♀️ Vulnerabilities have been addressed
+  - [CVE-2025-61729](https://access.redhat.com/security/cve/cve-2025-61729)
+  - [CVE-2025-61727](https://access.redhat.com/security/cve/cve-2025-61727)
+  - [CVE-2025-47914](https://access.redhat.com/security/cve/cve-2025-47914)
+  - [CVE-2025-58181](https://access.redhat.com/security/cve/cve-2025-58181)
+- 🗂️ AMajor Alpha Config YAML parsing revamped for better extensibility and preparing v8
+- 🐛 Squashed some bugs
+
+## Important Notes
+
+This release introduces a breaking change for Alpha Config users and moves us significantly 
+closer to removing legacy configuration parameters, making the codebase of OAuth2 Proxy more
+future proof and extensible.
+
+From v7.14.0 onward, header injection sources must be explicitly nested. If you
+previously relied on squashed fields, update to the new structure before upgrading:
+
+```yaml
+# before v7.14.0
+injectRequestHeaders:
+- name: X-Forwarded-User
+  values:
+  - claim: user
+- name: X-Custom-Secret-header
+  values:
+  - value: my-super-secret
+
+# v7.14.0 and later
+injectRequestHeaders:
+- name: X-Forwarded-User
+  values:
+  - claimSource:
+      claim: user
+- name: X-Custom-Secret-header
+  values:
+  - secretSource:
+      value: my-super-secret
+```
+
+Furthermore, Alpha Config now fully supports configuring the `Server` struct using YAML.
+
+```yaml
+// Server represents the configuration for the Proxy HTTP(S) configuration.
+type Server struct {
+	// BindAddress is the address on which to serve traffic.
+	BindAddress string `yaml:"bindAddress,omitempty"`
+
+	// SecureBindAddress is the address on which to serve secure traffic.
+	SecureBindAddress string `yaml:"secureBindAddress,omitempty"`
+
+	// TLS contains the information for loading the certificate and key for the
+	// secure traffic and further configuration for the TLS server.
+	TLS *TLS `yaml:"tls,omitempty"`
+}
+
+// TLS contains the information for loading a TLS certificate and key
+// as well as an optional minimal TLS version that is acceptable.
+type TLS struct {
+    // Key is the TLS key data to use.
+	Key *SecretSource `yaml:"key,omitempty"`
+    // Cert is the TLS certificate data to use.
+	Cert *SecretSource `yaml:"cert,omitempty"`
+    // MinVersion is the minimal TLS version that is acceptable.
+	MinVersion string `yaml:"minVersion,omitempty"`
+    // CipherSuites is a list of TLS cipher suites that are allowed.
+	CipherSuites []string `yaml:"cipherSuites,omitempty"`
+}
+```
+
+More about how to use Alpha Config can be found in the [documentation](https://oauth2-proxy.github.io/oauth2-proxy/configuration/alpha-config#server).
+
+We are committed to Semantic Versioning and usually avoid breaking changes without a major version release.
+Advancing Alpha Config toward its Beta stage required this exception, and even for the Alpha Config we try
+to keep breaking changes in v7 to a minium. Thank you for understanding the need for this step to prepare
+the project for future maintainability and future improvements like structured logging.
+
+## Breaking Changes
+
+- Alpha Config: header injection no longer supports squashed claim/secret sources; they must now be set explicitly (see example above).
+
 ## Changes since v7.13.0
 
-- [#3290](https://github.com/oauth2-proxy/oauth2-proxy/pull/3290) fix: WebSocket proxy to respect PassHostHeader setting (@UnsignedLong)
+- [#2628](https://github.com/oauth2-proxy/oauth2-proxy/pull/2628) feat(structured config): revamp of yaml parsing using mapstructure decoder and custom decoders (@tuunit)
 - [#3197](https://github.com/oauth2-proxy/oauth2-proxy/pull/3197) fix: NewRemoteKeySet is not using DefaultHTTPClient (@rsrdesarrollo / @tuunit)
 - [#3292](https://github.com/oauth2-proxy/oauth2-proxy/pull/3292) chore(deps): upgrade gomod and bump to golang v1.25.5 (@tuunit)
 - [#3304](https://github.com/oauth2-proxy/oauth2-proxy/pull/3304) fix: added conditional so default is not always set and env vars are honored fixes 3303 (@pixeldrew)
 - [#3264](https://github.com/oauth2-proxy/oauth2-proxy/pull/3264) fix: more aggressively truncate logged access_token (@MartinNowak / @tuunit)
 - [#3267](https://github.com/oauth2-proxy/oauth2-proxy/pull/3267) fix: Session refresh handling in OIDC provider (@gysel) 
+- [#3290](https://github.com/oauth2-proxy/oauth2-proxy/pull/3290) fix: WebSocket proxy to respect PassHostHeader setting (@UnsignedLong)
 
 # V7.13.0
 

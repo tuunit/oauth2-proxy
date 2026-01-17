@@ -157,6 +157,8 @@ func newReverseProxy(target *url.URL, upstream options.Upstream, errorHandler Pr
 	// Ensure we always pass the original request path
 	setProxyDirector(proxy)
 
+	// TODO (@tuunit) - this should be inverted or get a better name in the future to set the upstream host header
+	// only if PassHostHeader is explicitly set to true. Currently this would be a breaking change.
 	if !ptr.Deref(upstream.PassHostHeader, options.DefaultUpstreamPassHostHeader) {
 		setProxyUpstreamHostHeader(proxy, target)
 	}
@@ -215,6 +217,8 @@ func newWebSocketReverseProxy(u *url.URL, skipTLSVerify *bool, passHostHeader *b
 	// Apply the customized transport to our proxy before returning it
 	wsProxy.Transport = transport
 
+	// TODO (@tuunit) - this should be inverted or get a better name in the future to set the upstream host header
+	// only if PassHostHeader is explicitly set to true. Currently this would be a breaking change.
 	// Set upstream host header if PassHostHeader is false (same as regular HTTP proxy)
 	if !ptr.Deref(passHostHeader, options.DefaultUpstreamPassHostHeader) {
 		setProxyUpstreamHostHeader(wsProxy, u)
