@@ -10,6 +10,7 @@
 
 - [#3309](https://github.com/oauth2-proxy/oauth2-proxy/pull/3309) fix: Return 302 redirect from AuthOnly endpoint when skip-provider-button is true (@StefanMarkmann)
 - [#3302](https://github.com/oauth2-proxy/oauth2-proxy/pull/3302) fix: static upstreams failing validation due to `passHostHeader` and `proxyWebSockets` defaults being set incorrectly (@sourava01 / @tuunit)
+- [#3312](https://github.com/oauth2-proxy/oauth2-proxy/pull/3312) chore(deps): upgrade to go1.25.6 and latest dependencies (@tuunit)
 
 # V7.14.0
 
