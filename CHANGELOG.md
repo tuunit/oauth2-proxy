@@ -6,6 +6,20 @@
 
 ## Breaking Changes
 
+## Changes since v7.14.2
+
+# V7.14.2
+
+## Release Highlights
+
+- Revert AuthOnly endpoint change from v7.14.1 that caused issues when using `skip-provider-button` enabled
+
+## Important Notes
+
+- This release reverts the change made in v7.14.1 that caused issues when using the `skip-provider-button` enabled. Now, when a session does not exist, the AuthOnly endpoint will send a 401 status code as expected instead of a 302 redirect. And instead we extended the documentation to clarify the behavior when using `nginx` with `auth_request` and `skip-provider-button` and how to properly configure redirects for browser and API routes.
+
+## Breaking Changes
+
 ## Changes since v7.14.1
 
 - [#3314](https://github.com/oauth2-proxy/oauth2-proxy/pull/3314) revert: fix: skip provider button auth only redirect (#3309) (@StefanMarkmann / @tuunit)
